@@ -1,5 +1,5 @@
 (function (window) {
-    window.tools = window.free = {
+    window.tools = window.free = window.property = {
         /******************************************【1.简单动画和获取元素样式】*************************************** */
         // 定义方法获取元素的样式
         /**
@@ -109,16 +109,20 @@
             return reg.test(obj.className);
         },
 
+        /******************************************【3.获取DOM元素】****************************************/
+        /**
+         * 参数说明：
+         *      obj: 要获取的元素的选择器
+        */
+        getElement:function(obj){
+            return document.querySelector(obj);
+        },
         /******************************************【3.绑定单击响应函数】****************************************/
         /**
          * 参数说明：
-         *  obj，要绑定的对象
+         *  obj，要绑定的对象选择器
          *  fun, 回调函数。--->function(){}
          */
-        myClickId: function (obj, fun) {
-            var btn = document.getElementById(obj);
-            btn.onclick = fun;
-        },
         myClickAll: function (obj, fun) {
             var btn = document.querySelector(obj);
             btn.onclick = fun;
@@ -138,6 +142,7 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
 
                 /**
@@ -194,6 +199,7 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
                 /**
                  * div的偏移量：鼠标.clentX - 元素.offsetLeft
@@ -247,6 +253,7 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
                 /**
                  * div的偏移量：鼠标.clentX - 元素.offsetLeft
@@ -303,11 +310,8 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
-                /**
-                 * div的偏移量：鼠标.clentX - 元素.offsetLeft
-                 * div的偏移量：鼠标.clentY - 元素.offsetTop
-                 */
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
 
@@ -373,11 +377,8 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
-                /**
-                 * div的偏移量：鼠标.clentX - 元素.offsetLeft
-                 * div的偏移量：鼠标.clentY - 元素.offsetTop
-                 */
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
 
@@ -434,11 +435,8 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
-                /**
-                 * div的偏移量：鼠标.clentX - 元素.offsetLeft
-                 * div的偏移量：鼠标.clentY - 元素.offsetTop
-                 */
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
 
@@ -522,6 +520,7 @@
                 // 判断用户是否开启定位
                 if (tools.getStyle(obj1, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
                 }
                 // 获取鼠标偏移量
                 var progressX = event.clientX - this.offsetLeft;
@@ -617,7 +616,6 @@
                         // 马赛克矩形坐标:(0,1)----》马赛克矩形中的像素点： (0,5)---》(4,9)
                         // 马赛克矩形坐标:(1,0)----》马赛克矩形中的像素点： (5,0)---》(9,4)
                         // 马赛克矩形坐标:(1,1)----》马赛克矩形中的像素点： (5,5)---》(9,9)
-
 
                         // 获取单个像素信息(x和y为像素点的坐标)
                         var x = i * size + Math.floor(Math.random() * size);
@@ -840,7 +838,7 @@
                 }
             }, 30);
         },
-
     }
-
+    /******************************************【end.提示/帮助】****************************************/
+    console.log('Welcome to my CSDN:\n'+'https://mp.csdn.net/mp_blog/manage/article?spm=1000.2115.3001.5448');
 })(window);

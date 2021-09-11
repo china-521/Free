@@ -1,5 +1,5 @@
 (function Free(window) {
-    window.tools = window.free = window.Free = window.property = {
+    window.tools = window.free = window.Free = {
         /******************************************【1.简单动画和获取元素样式】*************************************** */
         // 定义方法获取元素的样式
         /**

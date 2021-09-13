@@ -1,5 +1,6 @@
-(function Free(window) {
-    window.tools = window.free = window.Free = {
+(function (window) {
+    console.log(globalThis);
+    window.tools = window.free = window.Free = globalThis.Free = {
         /******************************************【1.简单动画和获取元素样式】*************************************** */
         // 定义方法获取元素的样式
         /**
@@ -30,7 +31,7 @@
             // 关闭上一次的定时器(防止每次点击时创建新的定时器导致速度加快)
             clearInterval(obj.timer);
             // 获取元素当前相对位置
-            var current = parseInt(free.getStyle(obj, attr));
+            var current = parseInt(Free.getStyle(obj, attr));
             // 判断speed是作为正值使用还是负值使用(这样可以使输入的speed不用考虑正负)
             if (current < target) {
                 speed = speed;
@@ -41,7 +42,7 @@
             // 向执行动画的对象中添加一个timer属性，用来保存它自己的定时器的标识（尽量别用全局变量保存，有隐患）
             obj.timer = setInterval(function () {
                 // 获取box1原来的attr值
-                var oldValue = parseInt(free.getStyle(obj, attr));
+                var oldValue = parseInt(Free.getStyle(obj, attr));
                 // 添加速度
                 var newValue = oldValue + speed;
                 // 防止div越界
@@ -70,7 +71,7 @@
          */
         addClass: function (obj, cn) {
             // 判断obj中是否有cn这个class,如果没有在添加，否则不添加。（防止添加多个相同类）
-            if (!free.hasClass(obj, cn)) {
+            if (!Free.hasClass(obj, cn)) {
                 obj.className += " " + cn;
             }
         },
@@ -92,12 +93,12 @@
          */
         toggleClass: function (obj, cn) {
             // 检查obj中是否有cn这个class
-            if (free.hasClass(obj, cn)) {
+            if (Free.hasClass(obj, cn)) {
                 // 如果有cn，则删除
-                free.removeClass(obj, cn);
+                Free.removeClass(obj, cn);
             } else {
                 // 如果没有则添加
-                free.addClass(obj, cn);
+                Free.addClass(obj, cn);
             }
         },
 
@@ -838,7 +839,7 @@
                 }
             }, 30);
         },
-        /******************************************【16.轮播图案例】****************************************/
+        /******************************************【16.轮播图】****************************************/
         /**
          * 参数说明:
          *      obj1 : 轮播图显示容器
@@ -850,6 +851,150 @@
         loopChart: function (obj1, obj2, obj3, obj4) {
 
         },
+
+        /******************************************【call函数】****************************************/
+        /**
+         * 功能说明：
+         *      -改变函数this指向，执行函数并返回结果
+         *      -即执行Fn,使this为obj，并将后面的n个参数传给fn(功能等同于函数对象的call方法),如果obj为null，则 this 指向全局对象
+         * 参数说明：
+         *      Fn ：要执行的函数
+         *      obj：函数运行时this指向的对象
+         *      ...args：函数运行时的参数(可多个)
+         * 
+         */
+        call: function (Fn, obj, ...args) {
+            // 判断
+            if (obj === undefined || obj === null) {
+                obj = globalThis; //全局对象
+            }
+            // 为 obj 添加临时的方法
+            obj.temp = Fn;
+            // 调用 temp 方法
+            let result = obj.temp(...args);
+            // 删除 temp 方法
+            delete obj.temp;
+            // 返回执行结果
+            return result;
+        },
+        /******************************************【apply函数】****************************************/
+        /**
+         * 功能说明：
+         *      -改变函数this指向，执行函数并返回结果
+         *      -即执行Fn,使this为obj，并将args数组中的元素传给fn(功能等同于函数对象的apply方法),如果obj为null，则 this 指向全局对象
+         * 参数说明：
+         *      Fn ：要执行的函数
+         *      obj：函数运行时this指向的对象
+         *      args: 数组
+         *      
+         */
+        apply: function (Fn, obj, args) {
+            // 判断
+            if (obj === undefined || obj === null) {
+                obj = globalThis;
+            }
+            // 为 obj 添加临时的方法
+            obj.temp = Fn;
+            // 执行方法
+            let result = obj.temp(...args);
+            // 删除临时属性
+            delete obj.temp;
+            // 返回结果
+            return result;
+        },
+        /******************************************【bind函数】****************************************/
+        /**
+         * 限制事件处理函数频繁调用：1.函数节流 2.函数防抖
+         * 功能说明：
+         *      --改变函数this指向，执行函数并返回结果
+         *      -给Fn绑定this为obj，并指定参数为后面的n个参数(功能等同于函数对象的bind方法)
+         * 参数说明：
+         *      Fn : 要执行的函数
+         *      obj : 函数运行时this指向的对象
+         *      ...args: 函数运行时的参数
+         *      ...args2: 函数运行时的参数
+         */
+        bind: function (Fn, obj, ...args) {
+            // 返回一个新的函数
+            return function (...args2) {
+                // 执行 call 函数
+                return Free.call(Fn, obj, ...args, ...args2);
+            }
+        },
+        /******************************************【函数节流】****************************************/
+        /**
+         * 节流了解：
+         *      -在函数需要频繁触发时：函数执行一次后，只有大于设定的执行周期后才会执行第二次
+         *      -适用于多次事件按事件做平均分配触发
+         * 功能场景：
+         *      -窗口调整(resize)
+         *      -页面滚动(scroll)
+         *      -DOM元素的拖拽功能实现(mousemove)
+         *      -抢购疯狂点击(click)
+         *      -向后台发送请求(ajax)
+         * 功能说明:
+         *      -创建一个节流函数，在wait毫秒内最多执行 callback 一次
+         * 
+         * 参数说明：
+         *      callback ：回调函数
+         *      wait : 时间间隔
+         */
+        throttle: function (callback, wait) {
+            // 定义开始时间
+            let start = 0;
+            // 返回结果是一个函数
+            return function (event) {
+                // 获取当前的时间戳
+                let nowTime = Date.now();
+                // 判断
+                if (nowTime - start >= wait) {
+                    // 若满足条件则执行回调函数,this指向事件源(事件调用者)
+                    callback.call(this, event);
+                    // 修改开始时间
+                    start = nowTime;
+                }
+            }
+        },
+        /******************************************【函数防抖】****************************************/
+        /**
+         * 功能说明：
+         *      -创建一个防抖函数，该函数会从上一次被调用后，延迟 wait 毫秒后调用
+         * 参数说明：
+         *      callback ：回调函数
+         *      time : 时间间隔
+         */
+        debounce: function (callback, time) {
+            // 定时器标识
+            let timer = null;
+            // 返回一个函数
+            return function (event) {
+                // 关闭上一次的定时器
+                clearTimeout(timer);
+                // 启动定时器
+                timer = setTimeout(() => {
+                    // 执行回调
+                    callback(this, event);
+                }, time)
+            }
+        },
+        /******************************************【map函数】****************************************/
+        /** 
+         * 功能说明:
+         *      -创建一个新数组，其结果是 该数组中的每个元素是调用一次提供的函数后的返回值
+         * 参数说明：
+         *      arr ： 数组
+         *      callback ： 回调函数
+        */
+        map: function(arr,callback){
+            // 声明一个空数组
+            let result = [];
+            // 遍历数组
+            for(let i=0;i<arr.length;i++){
+                // 执行回调
+                result.push(callback(arr[i],i));
+            }
+            // 返回结果
+            return result;
+        },
     }
-    console.log('Welcome to my blog:\n'+'https://blog.csdn.net/m0_47214030?spm=1000.2115.3001.5343');
 })(window);

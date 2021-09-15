@@ -1,5 +1,4 @@
 (function (window) {
-    console.log(globalThis);
     window.tools = window.free = window.Free = globalThis.Free = {
         /******************************************【1.简单动画和获取元素样式】*************************************** */
         // 定义方法获取元素的样式
@@ -67,7 +66,7 @@
          * 添加一个类到指定的类中。
          *   参数说明：
          *     obj 要添加class属性的元素
-         *     cn 要添加的clsaa值（类名）。字符串形式
+         *     cn 要添加的class值（类名）。字符串形式
          */
         addClass: function (obj, cn) {
             // 判断obj中是否有cn这个class,如果没有在添加，否则不添加。（防止添加多个相同类）
@@ -981,20 +980,68 @@
         /** 
          * 功能说明:
          *      -创建一个新数组，其结果是 该数组中的每个元素是调用一次提供的函数后的返回值
+         *      -即返回一个由回调函数的返回值组成的新数组
          * 参数说明：
          *      arr ： 数组
          *      callback ： 回调函数
-        */
-        map: function(arr,callback){
+         */
+        map: function (arr, callback) {
             // 声明一个空数组
             let result = [];
             // 遍历数组
-            for(let i=0;i<arr.length;i++){
+            for (let i = 0; i < arr.length; i++) {
                 // 执行回调
-                result.push(callback(arr[i],i));
+                result.push(callback(arr[i], i));
             }
             // 返回结果
             return result;
         },
+        /******************************************【reduce函数】****************************************/
+        /**
+         * 功能说明：
+         *     -从左到右为每个数组元素执行一次回到函数，并把上次回调函数的返回值放在一个暂存器中，传给下次回调函数，
+         *          并返回最后一次回调函数的返回值。
+         * 参数说明：
+         *     arr : 数组
+         *     callback ：回调
+         *     initValue : 初始值    
+         */
+        reduce: function (arr, callback, initValue) {
+            // 声明变量
+            let result = initValue;
+            // 遍历数组
+            for (let i = 0; i < arr.length; i++) {
+                // 执行回调
+                result = callback(result, arr[i]);
+            }
+            // 返回最终的结果
+            return result;
+        },
+        /******************************************【filter函数】****************************************/
+        /**
+         * 功能说明：
+         *    
+         * 参数说明：
+         *      arr ：数组
+         *      callback ：回调函数
+         */
+        filter: function (arr,callback) {
+            // 声明空数组
+            let result = [];
+            // 遍历数组
+            for(let i=0;i<arr.length;i++){
+                // 执行回调
+                let res = callback(arr[i],i);
+                // 判断 如果为 真 则压入到 result 结果中
+                if(res){
+                    result.push(arr[i]);
+                } 
+
+            }
+            // 返回结果
+            return result;
+        },
+
     }
+
 })(window);

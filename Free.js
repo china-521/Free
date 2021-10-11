@@ -994,5 +994,5 @@
             },
         },
     }
-    console.log("Welcome to my blog：\n"+"https://mp.csdn.net/mp_blog/manage/article?spm=1000.2115.3001.5448");
+    console.log("Welcome to my blog：\n"+"https://blog.csdn.net/m0_47214030?spm=1000.2115.3001.5343");
 })(window);

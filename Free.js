@@ -1,22 +1,31 @@
 (function (window) {
     window.tools = window.free = window.Free = globalThis.Free = {
-        getStyle: function (obj, name) {
+        getStyle: function (selector, name) {
+            var obj = Free.getElement(selector);
             if (window.getComputedStyle) {
                 return getComputedStyle(obj, null)[name];
             } else {
                 return obj.currentStyle[name];
             }
         },
-        move: function (obj, attr, target, speed, callback) {
+        cartoon: function (selector, attr, target, speed, callback) {
+            var obj = Free.getElement(selector);
+            if (attr === 'left' || attr === 'right' || attr === 'top' || attr === 'bottom') {
+                if (tools.getStyle(selector, "position") == "static") {
+                    alert("尚未开启定位，无法进行拖拽");
+                    console.error("尚未开启定位，无法进行拖拽");
+                    return;
+                }
+            }
             clearInterval(obj.timer);
-            var current = parseInt(Free.getStyle(obj, attr));
+            var current = parseInt(Free.getStyle(selector, attr));
             if (current < target) {
                 speed = speed;
             } else if (current > target) {
                 speed = -speed;
             }
             obj.timer = setInterval(function () {
-                var oldValue = parseInt(Free.getStyle(obj, attr));
+                var oldValue = parseInt(Free.getStyle(selector, attr));
                 var newValue = oldValue + speed;
                 if (newValue > target && speed > 0) {
                     newValue = target;
@@ -30,39 +39,45 @@
                 }
             }, 30)
         },
-        addClass: function (obj, cn) {
-            if (!Free.hasClass(obj, cn)) {
+        addClass: function (selector, cn) {
+            var obj = Free.getElement(selector);
+            if (!Free.hasClass(selector, cn)) {
                 obj.className += " " + cn;
             }
         },
-        removeClass: function (obj, cn) {
+        removeClass: function (selector, cn) {
+            var obj = Free.getElement(selector);
             var reg = new RegExp("\\b" + cn + "\\b");
             obj.className = obj.className.replace(reg, "");
         },
-        toggleClass: function (obj, cn) {
-            if (Free.hasClass(obj, cn)) {
-                Free.removeClass(obj, cn);
+        toggleClass: function (selector, cn) {
+            if (Free.hasClass(selector, cn)) {
+                Free.removeClass(selector, cn);
             } else {
-                Free.addClass(obj, cn);
+                Free.addClass(selector, cn);
             }
         },
-        hasClass: function (obj, cn) {
+        hasClass: function (selector, cn) {
+            var obj = Free.getElement(selector);
             var reg = new RegExp("\\b" + cn + "\\b");
             return reg.test(obj.className);
         },
-        getElement: function (option) {
-            return document.querySelector(option);
+        getElement: function (selector) {
+            return document.querySelector(selector);
         },
-        myClickAll: function (obj, fun) {
-            var btn = document.querySelector(obj);
-            btn.onclick = fun;
+        eventAll: function (selector, eventName, fun) {
+            var btn = document.querySelector(selector);
+            eventName = eventName.replace(/^on/, '');
+            btn.addEventListener(eventName, fun);
         },
-        drag: function drag(obj) {
+        drag: function drag(selector) {
+            var obj = Free.getElement(selector);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -80,12 +95,14 @@
                 return false;
             };
         },
-        limitDrag: function (obj) {
+        limitDrag: function (selector) {
+            var obj = Free.getElement(selector);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -114,12 +131,14 @@
                 return false;
             };
         },
-        adsorbDrag: function (obj, adsorb) {
+        adsorbDrag: function (selector, adsorb) {
+            var obj = Free.getElement(selector);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -148,12 +167,15 @@
                 return false;
             };
         },
-        collideDrag: function (obj, adsorb, obj1, fun) {
+        collideDrag: function (selector1, selector2, adsorb, fun) {
+            var obj = Free.getElement(selector1);
+            var obj1 = Free.getElement(selector2);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector1, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -184,8 +206,7 @@
                     var Left2 = obj1.offsetLeft;
                     var Right2 = obj1.offsetLeft + obj1.offsetWidth;
                     if (!(Right1 < Left2 || Left1 > Right2 || Top1 > Bottom2 || Bottom1 < Top2)) {
-                        var fun1 = fun;
-                        fun1();
+                        (fun)();
                     }
                 };
                 document.onmouseup = function () {
@@ -194,12 +215,15 @@
                 return false;
             };
         },
-        collideDrags: function (obj, obj1, fun) {
+        collideDrags: function (selector1, selector2, fun) {
+            var obj = Free.getElement(selector1);
+            var obj1 = Free.getElement(selector2);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector1, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -218,8 +242,7 @@
                     var Left2 = obj1.offsetLeft;
                     var Right2 = obj1.offsetLeft + obj1.offsetWidth;
                     if (!(Right1 < Left2 || Left1 > Right2 || Top1 > Bottom2 || Bottom1 < Top2)) {
-                        var fun1 = fun;
-                        fun1();
+                        (fun)();
                     }
                 };
                 document.onmouseup = function () {
@@ -228,12 +251,21 @@
                 return false;
             };
         },
-        multipleDrag: function (obj, flag, value, obj1, fun) {
+        multipleDrag: function ({
+            selector1,
+            flag,
+            value,
+            selector2,
+            fun
+        }) {
+            var obj = Free.getElement(selector1);
+            var obj1 = Free.getElement(selector2);
             obj.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj, "position") == "static") {
+                if (tools.getStyle(selector1, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var ol = event.clientX - this.offsetLeft;
                 var ot = event.clientY - this.offsetTop;
@@ -272,8 +304,7 @@
                         var Left2 = obj1.offsetLeft;
                         var Right2 = obj1.offsetLeft + obj1.offsetWidth;
                         if (!(Right1 < Left2 || Left1 > Right2 || Top1 > Bottom2 || Bottom1 < Top2)) {
-                            var fun1 = fun;
-                            fun1();
+                            (fun)();
                         }
                     }
                 };
@@ -283,12 +314,21 @@
                 return false;
             };
         },
-        dragX: function (obj1, flag, obj2, obj3) {
+        dragX: function ({
+            selector1,
+            flag = true,
+            selector2,
+            selector3
+        }) {
+            var obj1 = Free.getElement(selector1);
+            var obj2 = Free.getElement(selector2);
+            var obj3 = Free.getElement(selector3);
             obj1.onmousedown = function (event) {
                 event = event || window.event;
-                if (tools.getStyle(obj1, "position") == "static") {
+                if (tools.getStyle(selector1, "position") == "static") {
                     alert("尚未开启定位，无法进行拖拽");
                     console.error("尚未开启定位，无法进行拖拽");
+                    return;
                 }
                 var progressX = event.clientX - this.offsetLeft;
                 var progressY = event.clientY - this.offsetTop;
@@ -308,12 +348,12 @@
                     } else if (innerY >= progressHeight) {
                         innerY = progressHeight;
                     }
-                    if (flag === "row") {
+                    if (flag) {
                         obj1.style.left = obj2.style.width = innerX + "px";
                         if (obj3) {
                             obj3.innerHTML = Math.round(innerX * 100 / progressWidth) + "%";
                         }
-                    } else if (flag === "column") {
+                    } else {
                         obj1.style.bottom = obj2.style.height = innerY + "px";
                         if (obj3) {
                             obj3.innerHTML = Math.round(innerX * 100 / progressWidth) + "%";
@@ -327,18 +367,27 @@
                 return false;
             };
         },
-        mosaic: function (src, level, obj, flag) {
+        mosaic: function ({
+            src,
+            level,
+            selector,
+            flag = false
+        }) {
+            var text = Free.getElement(selector);
+            if (text.getContext) {
+                var ctx = text.getContext('2d');
+            }
             var img = new Image();
             img.src = src;
             img.onload = function () {
-                test.width = img.width * 2; 
-                test.height = img.height;
+                text.width = img.width * 2; 
+                text.height = img.height;
                 draw();
             };
             function draw() {
-                obj.drawImage(img, 0, 0);
-                var oldImgData = obj.getImageData(0, 0, img.width, img.height);
-                var newImgData = obj.createImageData(img.width, img.height);
+                ctx.drawImage(img, 0, 0);
+                var oldImgData = ctx.getImageData(0, 0, img.width, img.height);
+                var newImgData = ctx.createImageData(img.width, img.height);
                 if (level <= 0) {
                     alert("level 的值不合法");
                     level = 1;
@@ -356,11 +405,13 @@
                         }
                     }
                 }
-                obj.clearRect(0, 0, test.width, test.height);
-                if (flag == true) {
-                    obj.putImageData(newImgData, img.width, 0);
+                ctx.clearRect(0, 0, text.width, text.height);
+                if (flag) {
+                    ctx.drawImage(img, 0, 0);
+                    ctx.putImageData(newImgData, img.width, 0);
                 } else {
-                    obj.putImageData(newImgData, 0, 0);
+                    text.width = img.width;
+                    ctx.putImageData(newImgData, 0, 0);
                 }
                 function getPxInfo(imgdata, x, y) {
                     var color = [];
@@ -388,14 +439,30 @@
         fixedNumber: function (num, n, num1) {
             return (Array(n).join(num1) + num).slice(-n);
         },
-        scratchCard: function (obj, image) {
-            var test = document.getElementById("test");
-            obj.width = document.documentElement.clientWidth;
-            obj.height = document.documentElement.clientHeight;
+        mediaTime: function (timeAll) {
+            var hour = cover(parseInt(timeAll / 3600), 2);
+            var min = cover(parseInt(timeAll % 3600 / 60), 2);
+            var sec = cover(parseInt(timeAll % 3600), 2);
+            return hour + ":" + min + ":" + sec;
+        },
+        scratchCard: function ({
+            selector,
+            src,
+            width,
+            height
+        }) {
+            var obj = Free.getElement(selector);
+            if (width || height) {
+                obj.style.width = width + 'px';
+                obj.style.height = height + 'px';
+            } else {
+                obj.width = document.documentElement.clientWidth;
+                obj.height = document.documentElement.clientHeight;
+            }
             if (obj.getContext) {
                 var ctx = obj.getContext("2d");
                 var img = new Image();
-                img.src = image;
+                img.src = src;
                 img.onload = function () {
                     draw();
                 };
@@ -447,15 +514,16 @@
                 }
             }
         },
-        divMove: function (obj, speeds, setSpeed) {
+        divMove: function ({selector, speed, setSpeed = 0,time = 30}) {
+            var obj = Free.getElement(selector);
             var choice = 0;
-            var speed = speeds;
+            var speed = speed;
             document.onkeydown = function (event) {
                 event = event || window.event;
                 if (event.ctrlKey) {
                     speed = setSpeed;
                 } else {
-                    speed = speeds;
+                    speed = speed;
                 }
                 choice = event.keyCode;
                 console.log(choice);
@@ -491,9 +559,152 @@
                         obj.style.top = (obj.offsetTop + speed) + "px";
                         break;
                 }
-            }, 30);
+            }, time);
         },
         loopChart: function (obj1, obj2, obj3, obj4) {
+        },
+        $tempTimeDown: [],
+        timeDown: function (selector, {
+            days,
+            hours,
+            minutes,
+            seconds,
+            describe = "倒计时：",
+            flag = true
+        }) {
+            var time_wrapper = document.querySelector(selector);
+            var unitSecond = days * 24 * 3600 + hours * 3600 + minutes * 60 + seconds;
+            function time(unitSecond) {
+                var timeArr = new Array(0, 0, 0, 0);
+                var unitDay = 24 * 60 * 60;
+                var unitHour = 60 * 60;
+                var unitMin = 60;
+                var unitSec = 0;
+                if (!unitSecond) {
+                    return;
+                }
+                if (unitSecond >= unitDay) {
+                    timeArr[0] = parseInt(unitSecond / unitDay);
+                    unitSecond %= unitDay;
+                }
+                if (unitSecond >= unitHour) {
+                    timeArr[1] = parseInt(unitSecond / unitHour);
+                    unitSecond %= unitHour;
+                }
+                if (unitSecond >= unitMin) {
+                    timeArr[2] = parseInt(unitSecond / unitMin);
+                    unitSecond %= unitMin;
+                }
+                if (unitSecond > unitSec) {
+                    timeArr[3] = unitSecond;
+                }
+                return timeArr;
+            }
+            var timeDownArr = time(unitSecond);
+            var timer = setInterval(() => {
+                timeDownArr[3]--;
+                if (timeDownArr[0] > 0) {
+                    if (timeDownArr[3] <= 0) {
+                        timeDownArr[3] = 59;
+                        timeDownArr[2] -= 1;
+                    }
+                    if (timeDownArr[2] <= 0) {
+                        timeDownArr[2] = 59;
+                        timeDownArr[1] -= 1;
+                    }
+                    if (timeDownArr[1] <= 0) {
+                        timeDownArr[1] = 23;
+                        timeDownArr[0] -= 1;
+                    }
+                } 
+                else if (timeDownArr[0] <= 0) {
+                    timeDownArr[0] = 0;
+                    if (timeDownArr[1] > 0) {
+                        if (timeDownArr[3] <= 0) {
+                            timeDownArr[3] = 59;
+                            timeDownArr[2] -= 1;
+                        }
+                        if (timeDownArr[2] <= 0) {
+                            timeDownArr[2] = 59;
+                            timeDownArr[1] -= 1;
+                        }
+                    } 
+                    else if (timeDownArr[1] <= 0) {
+                        timeDownArr[1] = 0;
+                        if (timeDownArr[2] > 0) {
+                            if (timeDownArr[3] <= 0) {
+                                timeDownArr[3] = 59;
+                                timeDownArr[2] -= 1;
+                            }
+                        } 
+                        else if (timeDownArr[2] <= 0) {
+                            timeDownArr[2] = 0;
+                            if (timeDownArr[3] <= 0) {
+                                clearInterval(timer);
+                            }
+                        }
+                    }
+                }
+                if (flag) {
+                    time_wrapper.innerHTML = describe + timeDownArr[0] + '天' + timeDownArr[1] + '时' + timeDownArr[2] + '分' + timeDownArr[3] + '秒';
+                } else {
+                    Free.$tempTimeDown = timeDownArr;
+                }
+            }, 1000);
+        },
+        $tempRunTime: [],
+        runTime: function (selector, {
+            year,
+            month,
+            day,
+            hour,
+            minute,
+            second,
+            describe = '本站已运行：',
+            flag = true
+        }) {
+            var time_wrapper = document.querySelector(selector);
+            function time(unitSecond) {
+                var timeArr = new Array(0, 0, 0, 0, 0);
+                var unitYear = 365 * 24 * 60 * 60;
+                var unitDay = 24 * 60 * 60;
+                var unitHour = 60 * 60;
+                var unitMin = 60;
+                var unitSec = 0;
+                if (!unitSecond) {
+                    return;
+                }
+                if (unitSecond >= unitYear) {
+                    timeArr[0] = parseInt(unitSecond / unitYear);
+                    unitSecond %= unitYear;
+                }
+                if (unitSecond >= unitDay) {
+                    timeArr[1] = parseInt(unitSecond / unitDay);
+                    unitSecond %= unitDay;
+                }
+                if (unitSecond >= unitHour) {
+                    timeArr[2] = parseInt(unitSecond / unitHour);
+                    unitSecond %= unitHour;
+                }
+                if (unitSecond >= unitMin) {
+                    timeArr[3] = parseInt(unitSecond / unitMin);
+                    unitSecond %= unitMin;
+                }
+                if (unitSecond > unitSec) {
+                    timeArr[4] = unitSecond;
+                }
+                return timeArr;
+            }
+            setInterval(() => {
+                var startTime = Math.round(new Date(Date.UTC(year, month - 1, day, hour, minute, second)).getTime() / 1000);
+                var nowTime = Math.round((new Date().getTime() + 8 * 60 * 60 * 1000) / 1000);
+                var runTimeArr = time(nowTime - startTime);
+                if (flag) {
+                    time_wrapper.innerHTML = describe + runTimeArr[0] + '年' + runTimeArr[1] + '天' + runTimeArr[2] + '时' + runTimeArr[3] + '分' + runTimeArr[4] + '秒';
+                } else {
+                    Free.$tempRunTime = runTimeArr;
+                }
+            }, 1000);
         },
         call: function (Fn, obj, ...args) {
             if (obj === undefined || obj === null) {
@@ -595,7 +806,7 @@
             }
             return false;
         },
-        unique: function (arr) {
+        unique1: function (arr) {
             const result = [];
             arr.forEach(item => {
                 if (result.indexOf(item) === -1) {
@@ -649,11 +860,11 @@
             }
             return result;
         },
-        flatten: function (arr) {
+        flatten1: function (arr) {
             let result = [];
             arr.forEach(item => {
                 if (Array.isArray(item)) {
-                    result = result.concat(Free.flatten(item));
+                    result = result.concat(Free.flatten1(item));
                 } else {
                     result = result.concat(item);
                 }
@@ -831,6 +1042,22 @@
                 return target;
             }
         },
+        strArr: function (str) {
+            return [...str]
+        },
+        $arrObj: [],
+        arrString: function (arr) {
+            let str = '';
+            arr.forEach((value) => {
+                if (typeof value === 'object') {
+                    Free.$arrObj.push(value);
+                    str += JSON.stringify(value) + '&';
+                } else {
+                    str += value;
+                }
+            })
+            return str;
+        },
         reverseString: function (str) {
             let arr = [...str];
             arr.reverse();
@@ -888,7 +1115,7 @@
                 Free.eventBus.callbacks = {};
             }
         },
-        Pubsub: {
+        PubSub: {
             index: 0,
             callbacks: {}
         },
@@ -992,7 +1219,7 @@
                 });
                 return Free.$axios(config);
             },
-        },
+        }
     }
-    console.log("Welcome to my blog：\n"+"https://blog.csdn.net/m0_47214030?spm=1000.2115.3001.5343");
+    console.log('Welcome to my blog:\n','https://blog.csdn.net/m0_47214030?spm=1000.2115.3001.5343')
 })(window);

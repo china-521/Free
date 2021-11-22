@@ -45,7 +45,9 @@ npm i free-wk -g
   @param {String} selector 要获取样式的选择器。
   @param {String} name 要获取的样式。
 
-* 使用方法：
+* 使用方法：Free.getStyle(selector,name);
+
+* 使用实例：
 
   ``` HTML
   <!DOCTYPE html>

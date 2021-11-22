@@ -42,7 +42,7 @@ npm i free-wk -g
 * 功能说明：获取元素的已有的样式
 
 * 参数说明：
-  @param {String} selector 要获取样式的DOM选择器。
+  @param {String} selector 要获取样式的选择器。
   @param {String} name 要获取的样式。
 
 * 使用方法：

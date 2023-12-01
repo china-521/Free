@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isRegExpTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isRegExp } from '../../utils/type/isRegExp.js'
+		const reg = /\a/;
+		const reg1 = new RegExp();
+		console.log(isRegExp(reg));
+		console.log(isRegExp(reg1));
+		console.log(isRegExp({a:1}));
+		// console.log(isRegExp([],true));
+		console.log(isRegExp(window,true,'输入的不是RegExp类型'));
+	</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>dragTest</title>
+	<style>
+		.container {
+			width: fit-content;
+			border: 1px solid;
+			margin: 1rem;
+		}
+
+		.box1,
+		.box2,
+		.box3 {
+			width: 50px;
+			height: 50px;
+			background: red;
+			text-align: center;
+			line-height: 3;
+			position: absolute;
+		}
+
+		.box {
+			width: 100px;
+			height: 100px;
+			margin: 1rem;
+			background-color: aquamarine;
+		}
+
+		/*  */
+
+		body {
+			/* Prevent the user selecting text in the example */
+			user-select: none;
+		}
+
+		#draggable {
+			text-align: center;
+			background: white;
+		}
+
+		.dropzone {
+			width: 200px;
+			height: 20px;
+			background: blueviolet;
+			margin: 10px;
+			padding: 10px;
+		}
+
+		.dropzone.dragover {
+			background-color: purple;
+		}
+
+		.dragging {
+			opacity: 0.5;
+		}
+	</style>
+	<script src="../../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div class="container">
+		<div data-effect="move" draggable="true" class="box1">数学</div>
+		<div data-effect="move" draggable="true" class="box2">物理</div>
+		<div data-effect="move" draggable="true" class="box3">化学</div>
+	</div>
+	<div class="box"></div>
+
+	<div class="dropzone" id="dropSource">
+		<div id="draggable">这个 div 可以拖动</div>
+	</div>
+	<div class="dropzone" id="droptarget">
+
+	</div>
+
+	<script>
+
+		let dragged;
+
+		$('#draggable').drag({
+			disable: false,
+			dragCallback: (e) => {
+				console.log('drag：', e);
+			},
+			dragStartCallback: (e) => {
+				// 设置为半透明
+				// 保存被拖动元素的引用
+				dragged = e.target;
+				e.target.classList.add("dragging");
+				console.log('dragStart：', e);
+			},
+			dragEndCallback: (e) => {
+				e.target.classList.remove("dragging");
+				console.log('dragEnd：', e);
+			},
+		});
+
+		$('#droptarget').drag({
+			dragOverCallback: (e) => {
+				console.log('target-over：', e);
+			},
+			dragEnterCallback: (e) => {
+				// 在可拖动元素进入潜在的放置目标时高亮显示该目标
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.add("dragover");
+				}
+				console.log('target-enter：', e);
+			},
+			dragLeaveCallback: (e) => {
+				// 在可拖动元素离开潜在放置目标元素时重置该目标的背景
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+				}
+			},
+			dropCallback: (e) => {
+				// 将被拖动元素移动到选定的目标元素中
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+					dragged.parentNode.removeChild(dragged);
+					e.target.appendChild(dragged);
+				}
+			}
+		});
+
+		$('#dropSource').drag({
+			dragOverCallback: (e) => {
+				console.log('source-over：', e);
+			},
+			dragEnterCallback: (e) => {
+				// 在可拖动元素进入潜在的放置目标时高亮显示该目标
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.add("dragover");
+				}
+			},
+			dragLeaveCallback: (e) => {
+				// 在可拖动元素离开潜在放置目标元素时重置该目标的背景
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+				}
+			},
+			dropCallback: (e) => {
+				// 将被拖动元素移动到选定的目标元素中
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+					dragged.parentNode.removeChild(dragged);
+					e.target.appendChild(dragged);
+				}
+			}
+		});
+	</script>
+
+	<!-- <script>
+
+		let dragged;
+
+		$._drag({
+			el: "#draggable",
+			disable:false,
+			dragCallback: (e) => {
+				console.log('drag：',e);
+			},
+			dragStartCallback: (e) => {
+				// 设置为半透明
+				// 保存被拖动元素的引用
+				dragged = e.target;
+				e.target.classList.add("dragging");
+				console.log('dragStart：',e);
+			},
+			dragEndCallback: (e) => {
+				e.target.classList.remove("dragging");
+				console.log('dragEnd：',e);
+			},
+		});
+
+		$._drag({
+			el: '#droptarget',
+			dragOverCallback: (e) => {
+				console.log('target-over：', e);
+			},
+			dragEnterCallback: (e) => {
+				// 在可拖动元素进入潜在的放置目标时高亮显示该目标
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.add("dragover");
+				}
+				console.log('target-enter：',e);
+			},
+			dragLeaveCallback: (e) => {
+				// 在可拖动元素离开潜在放置目标元素时重置该目标的背景
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+				}
+			},
+			dropCallback: (e) => {
+				// 将被拖动元素移动到选定的目标元素中
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+					dragged.parentNode.removeChild(dragged);
+					e.target.appendChild(dragged);
+				}
+			}
+		});
+
+		$._drag({
+			el:'#dropSource',
+			dragOverCallback: (e) => {
+				console.log('source-over：', e);
+			},
+			dragEnterCallback: (e) => {
+				// 在可拖动元素进入潜在的放置目标时高亮显示该目标
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.add("dragover");
+				}
+			},
+			dragLeaveCallback: (e) => {
+				// 在可拖动元素离开潜在放置目标元素时重置该目标的背景
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+				}
+			},
+			dropCallback: (e) => {
+				// 将被拖动元素移动到选定的目标元素中
+				if (e.target.classList.contains("dropzone")) {
+					e.target.classList.remove("dragover");
+					dragged.parentNode.removeChild(dragged);
+					e.target.appendChild(dragged);
+				}
+			}
+		});
+	</script> -->
+
+</body>
+
+</html>

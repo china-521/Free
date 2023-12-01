@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>removeTest</title>
+	<script src="../../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div class="el">
+		<div class="sub">
+			1
+			<div class="box">box</div>
+		</div>
+		<div class="sub">2</div>
+		<div class="sub">3</div>
+		<div class="sub">4</div>
+		<div class="sub">5</div>
+		<div class="sub">6</div>
+		<div class="box">el</div>
+	</div>
+	<div class="demo">
+		<div class="sub">1</div>
+		<div class="sub">2</div>
+		<div class="sub">3</div>
+		<div class="sub">4</div>
+		<div class="sub">5</div>
+		<div class="sub">6</div>
+		<div class="box">demo</div>
+	</div>
+	<script>
+		// $('.el').remove($.getElement('.sub',true));
+		$('div').remove(".box");
+		// $._remove('.demo','.sub');
+		// $._remove($.getElement('div',true),$.getElement('.sub',true));
+	</script>
+</body>
+
+</html>

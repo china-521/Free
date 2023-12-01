@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>toString测试</title>
+</head>
+<body>
+	<script type="module">
+		import {toString} from '../../utils/string/toString.js'
+		let a = 1;
+		console.log(toString(1));
+		let b = [1,2,3];
+		console.log(toString(b));
+		let c = {a:1,b:2};
+		console.log(toString(c));
+		let d = document.querySelector('title');
+		console.log(toString(d));
+
+		function demo(){
+			console.log(test);
+		}
+		console.log(toString(demo));
+		let e = undefined;
+		console.log(toString(e));
+		let f = NaN;
+		console.log(toString(f));
+		let h = '';
+		console.log(toString(h));
+	</script>
+</body>
+</html>

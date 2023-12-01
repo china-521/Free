@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>reduceTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		// 声明一个数组
+		const arr = [1, 2, 3, 4, 5];
+
+		// let result = arr.reduce(function(res,value){
+		//     return res + value;
+		// },0);
+
+		let result = $.arrayUtils.reduce(arr, function (res, value) {
+			return res + value;
+		},0);
+		console.log(result);
+
+		result = $.arrayUtils.reduce(arr,(res,value) => {
+			return res + value;
+		},1);
+		console.log(result);
+
+		result = $.arrayUtils.reduce(arr);
+		console.log(result);
+
+		// result = $.arrayUtils.reduce('demo',(res,value) => {
+		// 	return res + value;
+		// });
+
+		result = $.arrayUtils.reduce(arr,'demo');
+	</script>
+</body>
+
+</html>

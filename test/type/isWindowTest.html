@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isWindowTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isWindow } from '../../utils/type/isWindow.js'
+		console.log(isWindow(window));
+		console.log(isWindow('1'));
+		// console.log(isWindow({},true));
+		console.log(isWindow({},true,"输入的不是window"));
+	</script>
+</body>
+</html>

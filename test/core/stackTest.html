@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>stackTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let stack = new $.Stack();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		console.log(stack)
+		console.log('size：',stack.size());
+		console.log('firstElement：',stack.firstElement());
+		console.log('lastElement：',stack.lastElement());
+		console.log('peek：',stack.peek());
+		console.log('remove：',stack.remove(0),'size：',stack.size());
+		console.log('remove：',stack.clear(),'size：',stack.size());
+		stack.push(4);
+		stack.push(5);
+		stack.push({a:1,b:2});
+		console.log('indexOf：',stack.indexOf(4));
+		console.log('indexOf：',stack.lastIndexOf(5));
+		console.log('indexOf：',stack.lastIndexOf({a:1,b:2}));
+		console.log('search：',stack.search(4));
+		console.log('pushAll',stack.pushAll([1,2,3]));
+		console.log(stack)
+	</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isRgbColorTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		// r: 0 ~ 255
+		// g: 0 ~ 255
+		// b: 0 ~ 255
+		let color = 'rgb(255,0,0)';
+		console.log(Free.isRgbColor(color)); // true
+		color = 'rgb(255,0,0.5)';
+		console.log(Free.isRgbColor(color)); // true
+		color = 'rgb(25.5,0.5,0,1.5)';
+		console.log(Free.isRgbColor(color)); // false
+		color = '{}';
+		console.log(Free.isRgbColor(color)); // false
+	</script>
+</body>
+</html>

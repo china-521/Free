@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>eventDelegationTest</title>
+	<script src="../../../dist/Free.js"></script>
+	<style>
+		#items{
+			background-color: red;
+		}
+	</style>
+</head>
+
+<body>
+	<ul id="items">
+		<li>AAAAA</li>
+		<li>ccccc</li>
+		<li>bbbbb</li>
+		<li>ddddd</li>
+		<li>eeeee</li>
+		<div>hello world</div>
+	</ul>
+	<script>
+		$.eventDelegation({
+			el:'ul',
+			selector:'li',
+			type:'click',
+			callback:() => {
+				console.log(this);
+			}
+
+		});
+
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isJsonTest</title>
+</head>
+
+<body>
+	<script type="module">
+		import { isJson } from '../../utils/type/isJson.js'
+		let obj = {a:1,b:2};
+		obj = JSON.stringify(obj);
+
+		console.log(isJson(obj));
+		console.log(isJson("1",true));
+		console.log(isJson('{a:1,b:2}',true,'输入的不是 JSON 类型'));
+		// console.log(isJson("1.1",true));
+		// console.log(isJson(() => {},true,'输入的不是 JSON 类型'));
+	</script>
+</body>
+
+</html>

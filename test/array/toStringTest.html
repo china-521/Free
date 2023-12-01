@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>toStringTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		let arr = [1, 2, 3];
+		console.log($.arrayUtils.toString(arr));
+		console.log($.arrayUtils.toString(arr, '-'));
+		console.log($.arrayUtils.toString(arr, '_'));
+
+		$.arrayUtils.toString(456);
+	</script>
+</body>
+
+</html>

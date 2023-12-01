@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>appendQueryTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		let url = 'https://helo.com';
+		console.log($.appendQuery(url, { a: 1, b: 2, c: 3 }));
+		console.log(url);
+		console.log($.appendQuery(url,{a:1,b:3}));
+	</script>
+</body>
+
+</html>

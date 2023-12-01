@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>colorNameToHexTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let hex = $.colorNameToHex('red');
+		console.log(hex); // #FF0000
+		hex = $.colorNameToHex('yellow');
+		console.log(hex); // # ffff00
+		hex = $.colorNameToHex();
+		console.log(hex); // undefined
+	</script>
+</body>
+</html>

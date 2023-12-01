@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>addMethodTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let obj = {};
+		$.addMethod(obj,'search',() => {
+			console.log('查询所有');
+		});
+		$.addMethod(obj,'search',(id) => {
+			console.log('根据id查询');
+		});
+		$.addMethod(obj,'search',(id,name) => {
+			console.log('根据id和name查询');
+		});
+		console.log(obj);
+		obj.search();
+		obj.search(1);
+		obj.search(2,'Free');
+	</script>
+</body>
+</html>

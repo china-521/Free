@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>equalsTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		let arr1 = [1, 2, 3];
+		let arr2 = [1, 2, 3];
+		console.log(arr1, arr2, '普通方法比较：', arr1 === arr2);
+		console.log(arr1, arr2, 'equals方法比较：', $.equals(arr1, arr2));
+		arr2 = [3, 2, 1];
+		console.log(arr1, arr2, '普通方法比较：', arr1 === arr2);
+		console.log(arr1, arr2, 'equals方法比较：', $.equals(arr1, arr2));
+
+		console.log('==========================================================');
+		let obj1 = { a: 1, b: 2 };
+		let obj2 = { a: 1, b: 2 };
+		console.log(obj1, obj2, '普通方法比较：', obj1 === obj2);
+		console.log(obj1, obj2, 'equals方法比较：', $.equals(obj1, obj2));
+		obj2 = { b: 2, a: 1 };
+		console.log(obj1, obj2, '普通方法比较：', obj1 === obj2);
+		console.log(obj1, obj2, 'equals方法比较：', $.equals(obj1, obj2));
+		obj1 = { a: 1, b: 2, c: { b: 2, a: 1 } };
+		obj2 = { a: 1, b: 2, c: { a: 1, b: 2 } };
+		console.log(obj1, obj2, '普通方法比较：', obj1 === obj2);
+		console.log(obj1, obj2, 'equals方法比较：', $.equals(obj1, obj2));
+
+		let str1 = '123';
+		let str2 = '123';
+		console.log(str1,str2,'equals方法进行比较：', $.equals(str1, str2));
+		let num1 = 1;
+		let num2 = 1;
+		console.log(num1,num2,'equals方法进行比较：', $.equals(num1, num2));
+		let val1;
+		let val2;
+		console.log(val1,val2,'equals方法进行比较：', $.equals(val1, val2));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>stringifyTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		console.log(123);
+		console.log($.stringify(123));
+
+		const obj = {a:1,b:2};
+		console.log(obj);
+		console.log($.stringify(obj));
+
+		const arr = [1,2,,3];
+		console.log(arr);
+		console.log($.stringify(arr));
+
+		const boolean = true;
+		console.log(boolean);
+		console.log($.stringify(boolean));
+
+		const el = document.querySelector('title');
+		console.log(el);
+		console.log($.stringify(el));
+
+		const els = document.querySelectorAll('meta');
+		console.log(els);
+		console.log($.stringify(els));
+
+		const fun = function(){};
+		console.log(fun);
+		console.log($.stringify(fun));
+
+		console.log($.stringify(null));
+		console.log($.stringify(undefined));
+		console.log($.stringify(NaN));
+	</script>
+</body>
+</html>

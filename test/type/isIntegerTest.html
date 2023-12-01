@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isIntegerTest</title>
+</head>
+
+<body>
+	<script type="module">
+		import { isInteger } from '../../utils/type/isInteger.js'
+		console.log(isInteger(1));
+		console.log(isInteger(1.1));
+		// console.log(isInteger('1',true));
+		console.log(isInteger(() => {},true,'输入的不是Integer类型'));
+	</script>
+</body>
+
+</html>

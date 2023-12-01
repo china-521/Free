@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isFunctionTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isFunction } from '../../utils/type/isFunction.js'
+		const a = () => {};
+		const b = function(){};
+		const c = 1;
+		const d = "1";
+		const e = {test:1};
+		const f = [];
+		console.log(isFunction(a));
+		console.log(isFunction(b));
+		console.log(isFunction(c));
+		// console.log(isFunction(d,true));
+		// console.log(isFunction(e,true));
+		console.log(isFunction(f,true,'输入的不是Function类型'));
+
+	</script>
+</body>
+</html>

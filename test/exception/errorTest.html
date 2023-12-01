@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>errorTest</title>
+</head>
+<body>
+	<script type="module">
+		import { error } from '../../exception/error.js'
+		const a = 123;
+		const b = "123";
+		const c = [1,2,3];
+		const d = {a:1,b:2,c:3};
+		const e = () => {console.log('a')};
+		const f = document.querySelector('body');
+		const g = document.querySelectorAll('meta');
+		error(a);
+	</script>
+</body>
+</html>

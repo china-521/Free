@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isDateTest</title>
+</head>
+
+<body>
+	<script type="module">
+		import { isDate } from '../../utils/type/isDate.js'
+		let date = new Date();
+		console.log(isDate(date));
+		console.log(isDate({}));
+		// console.log(isDate({},true));
+		console.log(isDate({},true,'输入的不是Date类型'));
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isValidHTMLTagTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<>
+	<2></2>
+	<$></$>
+	<#></#>
+	<!-- <h>123</h> -->
+	<script>
+		const reg = /^<[a-zA-Z](.*?)>$|^<!-\-(.*?)-\->$/;
+		console.log(reg.test('<!--你好啊-->'));
+		console.log($.isValidHtmlTag('<div>'));
+		console.log($.isValidHtmlTag('<h1>'));
+		console.log($.isValidHtmlTag('<1h>'));
+		// console.log($.isValidHtmlTag('<$>',true));
+		console.log($.isValidHtmlTag('div',true,'标签不合法'));
+	</script>
+</body>
+</html>

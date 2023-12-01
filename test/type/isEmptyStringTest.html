@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isEmptyStringTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isEmptyString } from '../../utils/type/isEmptyString.js'
+		console.log(isEmptyString('',true));
+		// console.log(isEmptyString('你好',true));
+		console.log(isEmptyString({},true,'不是一个空字符串'));
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>extendTest</title>
+</head>
+<body>
+	<script type="module">
+		import { extend } from '../../extend/extend.js'
+		const plugin = {
+			hello:() => {
+				console.log('hello');
+			},
+			noConflict:() => {
+				console.log('没有冲突');
+			}
+		};
+	
+		// 为 Free 扩展方法
+		const extendResult = extend(plugin);
+		console.dir(extendResult);
+		// 作为对象使用
+		extendResult.target.noConflict();
+		// 作为函数使用
+		extendResult.target().hello()
+		extendResult.target().noConflict();
+	
+		// 为 demo 扩展方法
+		function demo(){}
+		demo['fun1'] = () => {console.log('我是fun1');}
+		extend(plugin,demo);
+		demo.fun1();
+		new demo().hello();
+		new demo().noConflict();
+	</script>
+</body>
+</html>

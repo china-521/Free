@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isHexColorTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let color = Free.isHexColor('#000000');
+		console.log(color); // true
+		color = Free.isHexColor('#bfa');
+		console.log(color); // true
+		color = Free.isHexColor('#BFA');
+		console.log(color); // true
+		color = Free.isHexColor('{}');
+		console.log(color); // false
+	</script>
+</body>
+</html>

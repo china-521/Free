@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>instanceOfTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		function Person(name,age){
+			this.name = name;
+			this.age = age;
+		}
+		let p = new Person();
+
+        console.log($.instanceOf(null,Person));
+        console.log($.instanceOf(p,Object));
+        console.log($.instanceOf(Person,Object));
+        console.log($.instanceOf(Person,Function));
+        console.log($.instanceOf(p,Function));
+
+	</script>
+</body>
+</html>

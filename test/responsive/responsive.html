@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>responsiveTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div id="app" :style="style">
+		{{name}}
+		<h1 class="name">姓名：{{name}}</h1>
+		<h1 :style="style">年龄：{{ age }}</h1>
+		<h1>标题：{{title}}</h1>
+		<label for="name">姓名：</label>
+		<input id="name" type="text" v-model="name">
+		<br />
+		<label for="title">标题：</label>
+		<input id="title" type="text" v-model="title"><br />
+		<br/>
+		<button @click="hello">点我触发事件</button>
+	</div>
+	<script>
+		class demo{
+			constructor(){}
+			update(){
+				console.log(this);
+			}
+		}
+		$.logTip = false;
+		const vm = $({
+			el: '#app',
+			data() {
+				return {
+					title: 'Free测试',
+					name: '上官婉儿',
+					age: '177',
+					style: {
+						color: "red",
+						bakcgroundRed: "orange"
+					},
+					list:[
+						1,2,3,[1,2,3]
+					]
+				}
+			},
+			created(){
+				console.log('created方法调用了');
+			},
+			updated(){
+				console.log('updated方法调用了');
+			},
+			methods: {
+				hello(){
+					console.log('name：',this.name);
+					this.name = '李四'
+					console.log('name：',this.name);
+				}
+			},
+		});
+		// console.log(vm);
+	</script>
+</body>
+
+</html>

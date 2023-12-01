@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isNodeListTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isNodeList } from  '../../utils/type/isNodeList.js'
+		const nodeList = document.querySelectorAll('meta');
+		const node = document.querySelector('meta');
+		console.log(isNodeList(nodeList));
+		console.log(isNodeList(node));
+		// console.log(isNodeList(node,true));
+		console.log(isNodeList(node,true,'不是 NodeList 类型'));
+	</script>
+</body>
+</html>

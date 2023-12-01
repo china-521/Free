@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>eventBusTest</title>
+    <script src="../../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		$.eventBus.$on('login', data => {
+            console.log(data + '用户已经登录');
+        });
+        $.eventBus.$on('login', data => {
+            console.log(data + '用户登录已经写入')
+        });
+        $.eventBus.$on('logout', data => {
+            console.log(data + '退出登录')
+        });
+        setTimeout(()=>{
+            $.eventBus.$emit('login','张三');
+            $.eventBus.$emit('logout','张三');
+        },2000);
+
+        $.eventBus.$off('logout');
+        console.log($.eventBus.callbacks);
+	</script>
+</body>
+</html>

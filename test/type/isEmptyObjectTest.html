@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isEmptyObjectTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isEmptyObject } from '../../utils/type/isEmptyObject.js'
+		console.log(isEmptyObject({}));
+		// console.log(isEmptyObject({a:1,b:2},true));
+		console.log(isEmptyObject(12,true,'不是一个空对象'));
+	</script>
+</body>
+</html>

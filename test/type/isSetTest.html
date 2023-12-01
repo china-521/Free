@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isSetTest</title>
+</head>
+<body>
+	<script type="module">
+		import {isSet} from '../../utils/type/isSet.js'
+		let a = new Set();
+		console.log(isSet(a));
+		a = new Map();
+		console.log(isSet(a));
+		a = document.querySelectorAll('meta');
+		// console.log(isSet(a,true));
+		a = [];
+		console.log(isSet(a,true,'不是一个Set'));
+
+	</script>
+</body>
+</html>

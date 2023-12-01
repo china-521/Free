@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isHslaColorTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		// h: 0 ~ 360, s: 0 ~ 100%, l: 0 ~ 100%, a: 0 ~	1
+		
+		let color = 'hsla(255,0,0)';
+		console.log(Free.isHslaColor(color)); // false
+		color = 'hsla(255,0,12,1)';
+		console.log(Free.isHslaColor(color)); // false
+		color = 'hsla(25.5,0.5%,10%,0.5)';
+		console.log(Free.isHslaColor(color)); // true
+		color = 'hsla(255,0,255,1.5)';
+		console.log(Free.isHslaColor(color)); // false
+		color = 'hsla(360,0,120%,1.5)';
+		console.log(Free.isHslaColor(color)); // false
+		color = '{}';
+		console.log(Free.isHslaColor(color)); // false
+	</script>
+</body>
+</html>

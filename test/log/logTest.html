@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>logTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		$.log('有延迟输出', { color: "blue", fontSize: 18 }, false, 2000);
+		$.log('无延迟输出:https://wk-blog.vip', { color: "red", fontSize: 18 }, false);
+		$.log({ a: 1, b: 2 }, { color: "red", fontSize: 18 }, false);
+
+		let log1 = [
+			'日志1',
+			'日志2',
+			'\n\n\n\n',
+			'1 ',
+			[1, 2, 3],
+			" 456",
+			" 789",
+			'',
+			'\n',
+			789,
+			{ a: 1 }
+		];
+
+		let styles1 = [
+			{
+				height: 10,
+				padding: '1rem',
+				color: "red",
+				background: 'skyblue',
+
+			},
+			{
+				height: 10,
+				padding: '1rem',
+				color: 'blue',
+				background: 'orange',
+			},
+			{
+				color: 'red'
+			},
+			{
+				color: 'pink'
+			},
+			{
+				color: 'yellowgreen'
+			},
+			{
+				color: 'skyblue'
+			},
+			{
+				color: 'green'
+			},
+			{
+				color: 'blue'
+			},
+			{
+				color: 'brown'
+			},
+			{
+				color: 'aquamarine'
+			},
+			{
+				color: 'brown'
+			}
+		];
+
+		$.logPlus(log1, styles1, false);
+
+		$.logPlus();
+	</script>
+</body>
+
+</html>

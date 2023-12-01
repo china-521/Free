@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isRgbaColorTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		// r: 0-255
+		// g: 0-255
+		// b: 0-255
+		// a: 0-1
+		let color = 'rgba(255,0,0)';
+		console.log(Free.isRgbaColor(color)); // false
+		color = 'rgba(255,0,12,1)';
+		console.log(Free.isRgbaColor(color)); // true
+		color = 'rgba(25.5,0.5,255,0.5)';
+		console.log(Free.isRgbaColor(color)); // true
+		color = 'rgba(255,0,255,1.5)';
+		console.log(Free.isRgbaColor(color)); // false
+		color = '{}';
+		console.log(Free.isRgbaColor(color)); // false
+	</script>
+</body>
+</html>

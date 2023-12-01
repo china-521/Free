@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>getTypeTest</title>
+</head>
+
+<body>
+	<script type="module">
+		import { getType } from '../../utils/type/getType.js'
+		let a = 11;
+		a = "ad";
+		console.log(a,getType(a));
+		a = [];
+		console.log(a,getType(a));
+		a = {};
+		console.log(a,getType(a));
+		a = function () { };
+		console.log(a,getType(a));
+		a = undefined;
+		console.log(a,getType(a));
+		a = NaN;
+		console.log(a,getType(a));
+		a = null;
+		console.log(a,getType(a));
+	</script>
+	<script type="module">
+		import global from '../../exchange/exchange.js'
+		console.log(global);
+	</script>
+</body>
+
+</html>

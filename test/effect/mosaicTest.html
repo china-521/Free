@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>mosaicTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div class="app">
+		<div :class="title">
+			<h1>
+				<span :data="level">马赛克生成器</span>
+			</h1>
+			<input type="text" placeholder="请输入马赛克处理程度" v-model.number="level">
+			<button class="down" @click="down">点击下载</button>
+			<button class="add" @click="add">+</button>
+			<button class="reduce" @click="reduce">-</button>
+		</div>
+		<br>
+		<br>
+		<div class="mosaic" style="width:600px;"></div>
+		<li v-for="li in level"></li>
+	</div>
+	<script>
+		$({
+			el: '.app',
+			data() {
+				return {
+					title: '测试',
+					level: 1,
+				}
+			},
+			created() {
+				// console.dir(this._vNode)
+				// let vNode = this._vNode;
+				// this.forNode(vNode);
+			},
+			updated() {
+				this.mosaic();
+			},
+			mounted() {
+				console.log(this)
+				console.log(this._data.level)
+			},
+			methods: {
+				forNode(vNode) {
+					Object.keys(vNode).forEach(key => {
+						if (key === 'children' && vNode[key].length) {
+							vNode[key].forEach(el => {
+								this.forNode(el);
+							});
+						}
+						console.log(vNode)
+					});
+				},
+				clear() {
+					const el = $('#Free-mosaic').get(0);
+					if (el) {
+						el.remove();
+					}
+				},
+				mosaic() {
+					this.clear();
+					$.mosaic({
+						el: '.mosaic',
+						src: "./img/2.jpg",
+						width: 400,
+						flag: true,
+						level: this.level
+					});
+				},
+				down() {
+					$('.down').click((e) => {
+						const link = $.createElement({
+							tag: "a",
+							attribute: {
+								href: $('#Free-mosaic').get(0).toDataURL('image/png'),
+								download: '测试.png',
+							}
+						});
+						link.click();
+					});
+				},
+				add() {
+					this.level++;
+				},
+				reduce() {
+					this.level--;
+				}
+			},
+		});
+	</script>
+</body>
+
+</html>

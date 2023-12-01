@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>clickBombTest</title>
+	<script src="../../dist/Free.js"></script>
+	<style>
+		.box{
+			margin:0 auto;
+			height:400px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<button>点击按钮</button>
+	</div>
+	<script>
+		$.clickBomb({
+			// el:".box",
+			colors:["#F73859", "#14FFEC", "#00E0FF", "#FF99FE", "#FAF15D",'pink']
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>clickDynamicTextTest</title>
+	<script src="../../dist/Free.js"></script>
+	<style>
+		.box{
+			height:500px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box"></div>
+	<script>
+		$.clickDynamicText({
+			el:'.box',
+			font:'bold 16px "华文彩云"',
+			left:20,
+			top:25,
+			speed:8,
+			delay:true,
+			delayTime:60,
+			text: ['❤', '(ꐦ°᷄д°᷅)','OωO','(๑•́ ∀ •̀๑)']
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>formatTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script type="module">
+		let date = new Date().getTime();
+		console.log($.dateUtils.format(date,'YYYY-MM-DD'));
+		console.log($.dateUtils.format(date));
+		console.log($.dateUtils.format(date,'YYYY-MM-DD'));
+		console.log($.dateUtils.format(date,'YYYY/MM/DD'));
+		console.log($.dateUtils.format(date,'hh:mm:ss'));
+		console.log($.dateUtils.format(date,'hh/mm/ss'));
+	</script>
+</body>
+</html>

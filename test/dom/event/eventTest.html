@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>eventTest</title>
+	<script src="../../../dist/Free.js"></script>
+</head>
+<body style="height:2000px;">
+	<button class="add">点我触发对单个元素事件</button>
+	<button class="cancel">点我取消对单个元素事件</button>
+	<button class="addAll">点我触发对多个元素事件</button>
+	<button class="cancelAll">点我取消对多个元素事件</button>
+	<div class="box" style="padding-top:1rem;padding-bottom:1rem;border:1px solid red;">
+		<button class="btn1">点我进行事件测试1</button>
+		<button class="btn1">点我进行事件测试2</button>
+	</div>
+	<script>
+		let i = 0;
+
+
+		function hello(){
+			console.log('hello,world');
+		}
+
+		function add(){
+			$.event.add('.btn1','click',hello);
+		}
+
+		$.event.add('.add','click',add);
+		
+		function remove(){
+			$.event.remove('.btn1','click',hello);
+		}
+		$.event.add('.cancel','click',remove);
+
+		function addAll(){
+			$.event.addAll('.btn1','mouseenter',hello);
+		}
+
+		function removeAll(){
+			$.event.removeAll('.btn1','mouseenter',hello);
+		}
+
+		$.event.add('.addAll','click',addAll);
+		$.event.add('.cancelAll','click',removeAll);
+
+		// 为 window 添加事件
+		// $.event.add(window,'scroll',() => {
+		// 	console.log("我是window");
+		// });
+
+		// 为 document 添加事件
+		// $.event.add(document,'click',() => {
+		// 	console.log('我是document');
+		// });
+	</script>
+</body>
+</html>

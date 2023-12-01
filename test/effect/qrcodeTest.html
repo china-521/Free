@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>qrcodeTest</title>
+	<script src="../../dist/Free.js"></script>
+	<style>
+		.qr-container{
+			margin:1rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="app">
+		<input type="text" placeholder="输入文本内容" v-model="text">
+		&ensp;
+		<button @click="createQR">一键生成二维码</button>
+		<div class="qr-container"></div>
+	</div>
+	<script>
+		$({
+			el: '.app',
+			data() {
+				return {
+					text: '',
+					logoSrc:'./img/2.jpg'
+				}
+			},
+			methods: {
+				createQR() {
+					if(!this.text){
+						alert('请输入有效的文本内容');
+						return;
+					}
+					$.qrcode({
+						el: '.qr-container',
+						text: this.text,
+						width:200,
+						height:200,
+						logoSrc: this.logoSrc,
+						correctLevel:'H',
+					});
+				}
+			},
+		});
+	</script>
+</body>
+
+</html>

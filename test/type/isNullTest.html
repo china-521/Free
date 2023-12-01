@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isNullTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isNull} from '../../utils/type/isNull.js'
+		console.log(isNull(null));
+		console.log(isNull(NaN));
+		// console.log(isNull(undefined,true));
+		console.log(isNull(3,true,'输入的不是Null类型'));
+	</script>
+</body>
+</html>

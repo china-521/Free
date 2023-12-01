@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ajaxTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		$.$axios({
+			url:'https://raw.onmicrosoft.cn/Bing-Wallpaper-Action/main/data/zh-CN_all.json',
+			method:'get',
+			params:{
+				key:new Date().getTime()
+			}
+		}).then(response => {
+			console.log(response);
+		}).catch(e => {
+			console.log(e)
+		});
+
+		$.$axios.get('https://raw.onmicrosoft.cn/Bing-Wallpaper-Action/main/data/zh-CN_all.json',{
+			params:{
+				key: new Date().getTime()
+			}
+		}).then(response => {
+			console.log(response);
+		});
+	</script>
+</body>
+</html>

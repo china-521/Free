@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>containsTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let str1 = "hello,world";
+		let str2 = "world";
+		console.log($.stringUtils.contains(str1,str2));
+		console.log($.stringUtils.contains(str2,str1));
+
+		str2 = "hello,world";
+
+		console.log($.stringUtils.contains(str1,str2));
+		// console.log($.stringUtils.contains(1,str2));
+		console.log($.stringUtils.contains(str1,2));
+	</script>
+</body>
+</html>

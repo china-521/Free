@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>colorNameToRgbTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let hex = $.colorNameToRgb('red');
+		console.log(hex); // {r: 255, g: 0, b: 0}
+		hex = $.colorNameToRgb('yellow');
+		console.log(hex); // {r: 255, g: 255, b: 0}
+		hex = $.colorNameToRgb();
+		console.log(hex); // undefined
+	</script>
+</body>
+</html>

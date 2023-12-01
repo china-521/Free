@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>everyTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		let arr = [1, 2, 3, 4, 5, 6, 2077, 8, 1024];
+		// 检查数组元素是否都大于0
+		let result = $.arrayUtils.every(arr, (item, index) => {
+			return item > 0;
+		});
+		console.log(result); // true
+
+		// 检查数组元素是否都大于0
+		arr = [1, 2, 3, 4, 5, 6, 2077, 8, 1024, -1];
+		result = $.arrayUtils.every(arr, (item, index) => {
+			return item > 0;
+		});
+		console.log(result); // false
+
+		result = $.arrayUtils.every(arr);
+		console.log(result);
+
+		// $.arrayUtils.every("d");
+		$.arrayUtils.every(arr,'dd');
+	</script>
+</body>
+
+</html>

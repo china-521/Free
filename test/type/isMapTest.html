@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isMapTest</title>
+</head>
+<body>
+	<script type="module">
+		import {isMap} from '../../utils/type/isMap.js'
+		let a = new Map();
+		console.log(isMap(a));
+		a = new Set();
+		console.log(isMap(a));
+		a = document.querySelectorAll('meta');
+		// console.log(isMap(a,true));
+		a = [];
+		console.log(isMap(a,true,'不是一个Map'));
+
+	</script>
+</body>
+</html>

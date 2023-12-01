@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>rgbToHexTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let hex = $.rgbToHex('255,255,255');
+		console.log(hex);
+		hex = $.rgbToHex('rgb(255,255,255)');
+		console.log(hex);
+		hex = $.rgbToHex({
+			r:255,
+			g:255,
+			b:255
+		});
+		console.log(hex);
+	</script>
+</body>
+</html>

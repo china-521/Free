@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isStyleTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isStyle } from "../../utils/type/isStyle.js"
+		console.log(isStyle('width','100px'));
+		console.log(isStyle('opacity','0.5'));
+		console.log(isStyle('color','red'));
+		// console.log(isStyle('demo','demo',true));
+		console.log(isStyle('demo','demo',true,'不是合法的css值'));
+	</script>
+</body>
+</html>

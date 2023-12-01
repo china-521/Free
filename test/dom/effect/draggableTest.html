@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>draggableTest</title>
+	<style>
+		.drag {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+		}
+
+		.test {
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			margin: 0 auto;
+		}
+
+		.bump {
+			width: 100px;
+			height: 100px;
+			background: red;
+			margin: 0 auto;
+		}
+	</style>
+	<script src="../../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div class="test" style="position: absolute;">
+		<p style="width:60px;height:60px;background:orange;position:absolute;" class="item"></p>
+	</div>
+	<div class="test" style="position: absolute;top:200px;">
+		<p style="width:60px;height:60px;background:orange;position:absolute;" class="item"></p>
+	</div>
+	<div class="bump"></div>
+	<script>
+		const el = $('.test').get(0);
+		// $._draggable({
+		// 	el: '.test',
+		// 	flag: false,
+		// 	selector: '.bump',
+		// 	callback: null,
+		// 	enterCallback: (e) => {
+		// 		console.log('碰撞了', e);
+		// 	},
+		// 	leaveCallback: (e) => {
+		// 		console.log('离开了',e);
+		// 	}
+		// });
+
+		let val = $('.test').draggable({
+			flag: false,
+			batch:true,
+			selector: '.bump',
+			callback: (e) => {
+				console.log('拖拽',e);
+			},
+			enterCallback: (e) => {
+				console.log('碰撞了', e);
+			},
+			leaveCallback: (e) => {
+				console.log('离开了', e);
+			}
+		});
+		console.log(val)
+	</script>
+</body>
+
+</html>

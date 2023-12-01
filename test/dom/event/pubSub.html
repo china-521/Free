@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>pubSubTest</title>
+	<script src="../../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		// 订阅一个频道
+		let pid = $.pubSub.$subscribe('pay', data => {
+			console.log('商家接到了订单，准备开始制作', data);
+		});
+
+		let pid2 = $.pubSub.$subscribe('pay', data => {
+			console.log('骑手接到订单，准备开始去取餐', data);
+		});
+
+		let pid3 = $.pubSub.$subscribe('cancel', data => {
+			console.log('商家接到了请求', data);
+		});
+		// 输出唯一索引
+		console.log(pid,pid2,pid3);
+		// 取消订阅
+		// pubSub.$unsubscribe('pay');
+		// pubSub.$unsubscribe(pid);
+
+		// 发布消息
+		$.pubSub.$publish('pay', {
+			title: '鱼香肉丝',
+			price: 20,
+			pos: '三年级二班'
+		});
+
+		$.pubSub.$publish('cancel',"多放点辣椒");
+
+		console.log($.pubSub);
+	</script>
+</body>
+
+</html>

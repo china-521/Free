@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>filterTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		// 定义一个数组
+		let arr = [1, 2, 3, 4, 5, 6];
+		// const result = arr.filter(item => item % 2 ===1);
+
+		let result = $.arrayUtils.filter(arr, item => item % 2 === 0);
+		console.log(result);
+
+		result = $.arrayUtils.filter(arr, item => item % 3 === 0);
+		console.log(result);
+
+		// result = $.arrayUtils.filter("demo", item => item % 3 === 0);
+		result = $.arrayUtils.filter(arr, [1,23]);
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>searchTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let arr = [1,2,0,3,4,5,6,0,0,{a:1,b:2}]
+		let obj = {a:1,b:2};
+		console.log($.arrayUtils.search(arr,1));
+		console.log($.arrayUtils.search(arr,obj,true));
+		console.log($.arrayUtils.search(null,obj,true));
+		console.log($.arrayUtils.search(obj,obj,true));
+	</script>
+</body>
+</html>

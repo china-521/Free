@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>createElementTest</title>
+	<script src="../../../dist/Free.js"></script>
+	<style>
+		#app{
+			word-wrap: break-word;
+			width:400px;
+			height:180px;
+			overflow: auto;
+			margin:1rem;
+			border:1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+
+	</div>
+	<script>
+
+		function hello(){
+			console.log('hello');
+		}
+
+		window.fetch('https://wk-blog.vip/api/emoji/list')
+		.then(response => response.json())
+		.then(data => {
+			const emojiList = data.result;
+			console.log(emojiList);
+			emojiList.forEach(emoji => {
+				$.createElement({
+					tagName:'div',
+					parent:'#app',
+					append:true,
+					children:`
+						<div class="emoji-container" style="${$.toCssText({
+							color:"red",
+							margin:'5px'
+						})}" @click="${hello}">
+							<img src="${emoji.img}" style="display:inline-block;" width=24 height = 24 alt="表情"/>
+						</div>
+					`,
+					style:{
+						display:'inline-block'
+					}
+				});
+			})
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isObjectTest</title>
+</head>
+
+<body>
+	<script type="module">
+		import { isNumber } from '../../utils/type/isNumber.js'
+		console.log(isNumber(1));
+		console.log(isNumber([]));
+		// console.log(isNumber(undefined,true));
+		console.log(isNumber(() => {},true,'输入的不是Object类型'));
+	</script>
+</body>
+
+</html>

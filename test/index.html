@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="keywords" content="Free,$,js">
+	<meta name="description" content="Free.js是一款轻量级的js工具库">
+	<title>index</title>
+	<script src="./plugin.js"></script>
+	<script src="../dist/Free.js"></script>
+	<style>
+		div{
+			width: 100%;
+			background:orange;
+		}
+	</style>
+</head>
+<div class="box" id="box1" style="color:red;" data="null">1</div>
+<div class="box" id="box2" style="color:orange;opacity:0.5">2</div>
+<div class="box" id="box3">3</div>
+<div class="box">4</div>
+<div class="box">
+	<span>5</span>
+	<p>哈哈哈</p>
+</div>
+<span>6</span>
+<hr>
+
+<button id="qqMusic">获取qq音乐测试</button>
+<script>
+	$('#qqMusic').click(async () => {
+		const response = await $.GET(`https://wk-blog.vip/api/front/emoji/list`);
+		console.log(response)
+	});
+</script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isArrayTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isArray } from '../../utils/type/isArray.js'
+		console.log(isArray([],true));
+		console.log(isArray({a:1}));
+		// console.log(isArray(window,true));
+		console.log(isArray(window,true,'输入的不是Array类型'));
+	</script>
+</body>
+</html>

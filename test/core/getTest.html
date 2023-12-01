@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>getTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		console.log($('meta').get());
+		console.log($('meta').get(0));
+		function demo(){}
+		demo.get = $.fn.get;
+		console.dir(demo);
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>sortTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<script>
+		let arr = [3, 4, 2, 6, 1, 0, 5];
+		console.log($.arrayUtils.sort(arr)); // 升序
+		console.log($.arrayUtils.sort(arr,false,true)); // 降序
+
+		arr = ["北京", "上海","天津"];
+		console.log($.arrayUtils.sort(arr)); // 根具编码升序排序
+		console.log($.arrayUtils.sort(arr,false,true)); // 根具编码降序排序
+		console.log($.arrayUtils.sort(arr,true)); // 根据字典升序排序
+		console.log($.arrayUtils.sort(arr,true,true)); // 根据字典降序排序
+
+		$.arrayUtils.sort(546);
+	</script>
+</body>
+
+</html>

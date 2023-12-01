@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>rgbToColorNameTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let hex = $.rgbToColorName($.colorNameToRgb('red'));
+		console.log(hex);
+		hex = $.rgbToColorName($.colorNameToRgb('orange'));
+		console.log(hex);
+		hex = $.rgbToColorName({
+			r:255,
+			g:255,
+			b:255
+		});
+		console.log(hex);
+	</script>
+</body>
+</html>

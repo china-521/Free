@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>shuffleTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let arr = [1,2,3,4,5,6];
+		for(let i = 0;i < 10;i++){
+			console.log($.arrayUtils.shuffle(arr));
+		}
+		console.log($.arrayUtils.shuffle());
+		console.log($.arrayUtils.shuffle({}));
+	</script>
+</body>
+</html>

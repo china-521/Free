@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>openQQTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+
+<body>
+	<div class="app">
+		<input type="text" v-model="qq" placeholder="请输入QQ">
+		<button @click="openQQ">点击发起会话</button>
+	</div>
+	<script>
+		$({
+			el: '.app',
+			data(){
+				return {
+					qq:''
+				}
+			},
+			methods: {
+				openQQ(){
+					console.log(this);
+					if(this.qq){
+						$.openQQ(this.qq);
+					}
+				}
+			},
+		});
+	</script>
+</body>
+
+</html>

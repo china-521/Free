@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>equalsIgnoreCaseTest</title>
+	<script src="../../dist/Free.js"></script>
+</head>
+<body>
+	<script>
+		let str1 = "12E";
+		let str2 = "12e";
+		console.log(str1 === str2);
+		console.log($.stringUtils.equalsIgnoreCase(str1,str2));
+		console.log($.stringUtils.equalsIgnoreCase(1,str2));
+		console.log($.stringUtils.equalsIgnoreCase(str1,2));
+	</script>
+</body>
+</html>

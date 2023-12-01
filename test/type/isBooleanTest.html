@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>isBooleanTest</title>
+</head>
+<body>
+	<script type="module">
+		import { isBoolean } from '../../utils/type/isBoolean.js'
+		console.log(isBoolean(1 == 1,true));
+		console.log(isBoolean(false,true));
+		console.log(isBoolean('12'));
+		// console.log(isBoolean('12',true));
+		console.log(isBoolean({},true,'输入的不是Boolean类型'));
+	</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "name": "free-utils",
+  "name": "free-min",
   "version": "1.0.0",
   "description": "Free.js是一款轻量级的js函数工具库",
   "main": "./dist/Free.js",
@@ -10,7 +10,20 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:watch": "webpack --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "axios",
+    "string",
+    "array",
+    "regExp",
+    "math",
+    "date",
+    "effect",
+    "log",
+    "execption",
+    "dom",
+    "event",
+    "json"
+  ],
   "author": "往事随風",
   "license": "ISC",
   "dependencies": {

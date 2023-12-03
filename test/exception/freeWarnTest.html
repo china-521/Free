@@ -4,13 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>freeWarnTest</title>
+	<script src="../../dist/Free.js"></script>
 </head>
 <body>
-	<script type="module">
-		import { freeWarn } from '../../exception/freeWarn.js'
-		freeWarn({a:2,b:2},'','自定义警告');
-		freeWarn({a:2,b:2},'extendConflict');
-		freeWarn({a:2,b:2},'extendConflict','扩展冲突警告');
+	<script>
+		$.freeWarn({a:2,b:2},'','自定义警告');
+		$.freeWarn({a:2,b:2},'extendConflict');
+		$.freeWarn({a:2,b:2},'extendConflict','扩展冲突警告');
 	</script>
 </body>
 </html>

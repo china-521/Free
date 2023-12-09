@@ -7,7 +7,7 @@ import {
 } from "../extend/extend.js";
 
 // 方法合集
-import config from "../config/config.js";
+import config from "../config/index.js";
 import ajaxUtils from "./utils/ajaxUtils.js";
 import arrayUtils from "./utils/arrayUtils.js";
 import coreUtils from "./utils/coreUtils.js";
@@ -28,12 +28,8 @@ import typeUtils from "./utils/typeUtils.js";
 extend(ajaxUtils, Free, true);
 extend(arrayUtils, Free, true);
 extend({
-	info: config.freeInfo
-}, Free, true);
-extend({
-	nodeType: config.nodeType
-}, Free, true);
-extend({
+	info: config.freeInfo,
+	nodeType: config.nodeType,
 	colorMap: config.colorMap
 }, Free, true);
 extend(coreUtils.toFunction, Free, true);

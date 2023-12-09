@@ -1,9 +1,9 @@
 import {
 	extend
-} from "../../extend/extend.js"
+} from "../extend/extend.js"
 import {
 	isObject
-} from "../../utils/type/isObject.js";
+} from "../utils/type/isObject.js";
 
 // css颜色名称和16进制的映射关系对象	
 let colorMaps = {

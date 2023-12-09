@@ -1,4 +1,4 @@
-import config from "../../../config/config.js"
+import config from "../../../config/index.js"
 import {
 	isFree
 } from "../../type/isFree.js"

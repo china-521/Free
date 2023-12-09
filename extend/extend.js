@@ -1,3 +1,5 @@
+import Free from '../main/main.js'
+import config from '../config/index.js'
 import {
 	isObject
 } from '../utils/type/isObject.js'
@@ -13,7 +15,6 @@ import {
 import {
 	isEmpty
 } from '../utils/core/isEmpty.js'
-import Free from '../main/main.js'
 
 /**
  * 扩展Free对象身上的方法
@@ -34,10 +35,10 @@ export function extend(instance, target, flag) {
 		return extendResult;
 	}
 	if (!isObject(instance) && !isFunction(instance)) {
-		exception(instance, 'extendParam');
+		exception(instance, 'extendParamArgument',null,arguments);
 	}
 	if (!isObject(target) && !isFunction(target)) {
-		exception(target, 'extendParam');
+		exception(target, 'extendParamArgument',null,arguments);
 	}
 	if (isObject(instance) && isObject(target)) {
 		if (isEmpty(instance)) {
@@ -89,7 +90,7 @@ export function extend(instance, target, flag) {
 		}
 	}
 	if (!isEmpty(extendResult.conflictInstance)) {
-		freeWarn(extendResult, 'extendConflict');
+		freeWarn(config.warnMessageKey.extendConflict,null,extendResult);
 	}
 	return extendResult;
 }

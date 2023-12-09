@@ -1,6 +1,8 @@
 import {
 	exception
-} from "../../exception/exception.js";
+} from "../../exception/exception.js"
+import config from "../../config/index.js"
+
 /**
  * 检查是否是数组类型
  * @param {any} val 任意值
@@ -13,12 +15,12 @@ export function isArray(val, show, msg, params) {
 	let flag = Array.isArray(val);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Array', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'ArrayArgument', null, params);
+			exception(val, config.errorMessageKey.ArrayArgument, null, params);
 		}
-		exception(val, 'Array');
+		exception(val, config.errorMessageKey.Array);
 	}
 	return flag;
 }

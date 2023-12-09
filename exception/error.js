@@ -1,4 +1,4 @@
-import errorMessage from "../config/configs/errorMessage.js";
+import config from "../config/index.js"
 import {
 	contains
 } from "../utils/core/contains.js";
@@ -9,8 +9,8 @@ import {
  */
 export function error(msg, errorType) {
 	const pre = '[Free Error]:';
-	if (errorType && contains(errorMessage, errorType)) {
-		msg = errorMessage[errorType];
+	if (errorType && contains(config.errorMessage, errorType)) {
+		msg = config.errorMessage[errorType];
 	}
 	throw new Error(pre + msg);
 }

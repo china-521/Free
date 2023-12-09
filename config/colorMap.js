@@ -1,7 +1,9 @@
 import {
 	extend
-} from "../../extend/extend.js"
-import { isObject } from "../../utils/type/isObject.js";
+} from "../extend/extend.js"
+import {
+	isObject
+} from "../utils/type/isObject.js";
 
 // css颜色名称和16进制的映射关系对象	
 let colorMaps = {
@@ -169,7 +171,7 @@ function add(colorName, colorHex) {
  * @param {Object} colorObj 颜色名称映射对象 
  */
 function addBatch(colorObj) {
-	if(!isObject(colorObj,true,null,arguments)){
+	if (!isObject(colorObj, true, null, arguments)) {
 		return;
 	}
 

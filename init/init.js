@@ -5,9 +5,8 @@ function logTip(open) {
 	if (!open) {
 		return;
 	}
-	const info1 = 'Free does not support running under IE browser for the time being.\n' +
-		`Welcome to my blog：${Free.info.blog}  ${Free.info.csdn}`;
-	const info2 = [`Free.js ${Free.info.version}`, `${Free.info.doc}`];
+	const info1 = 'Free does not support running under IE browser for the time being.';
+	const info2 = [`Free.js ${Free.info.version}`,`${Free.info.gitee}`,`${Free.info.github}`];
 	const style1 = {
 		color: 'deeppink'
 	};
@@ -23,8 +22,15 @@ function logTip(open) {
 		background: 'black',
 		background: '#f1c97d',
 	};
+	const style4 = {
+		padding: '5px',
+		fontSize: '12px',
+		background: 'black',
+		background: '#f1c97d',
+		marginLeft:1
+	};
 	Free.logPlus(info1, style1);
-	Free.logPlus(info2, [style2, style3]);
+	Free.logPlus(info2, [style2, style3,style4]);
 }
 
 const inBrowser = typeof window !== 'undefined';

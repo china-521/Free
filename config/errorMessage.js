@@ -1,6 +1,6 @@
 import {
 	extend
-} from "../../extend/extend.js"
+} from "../extend/extend.js"
 
 /**
  * 拼接消息
@@ -57,7 +57,8 @@ const typeObject = {
 	event: 'a correct event name',
 	htmlTag: 'a correct HTML Tag',
 	plainObject: 'a plain Object',
-	htmlDocument: 'a document'
+	htmlDocument: 'a document',
+	extendParam: 'an object or function'
 };
 
 const typeMsg = concat(pre, medium, null, typeObject);
@@ -68,17 +69,14 @@ const typeArgumentMsg = concat(pre, medium, 'Argument', typeObject);
 
 const ip = 'Please enter the IP address in the correct format';
 const platform = 'Sorry, your browser does not support the platform attribute';
-const extendParam = `Free detected that the parameter type passed is not a configuration object or function.Please ensure that an object or function is passed`;
 const domIsNull = 'The target DOM Element is null';
 
 const errorMessage = {
 	ip,
 	platform,
-	extendParam,
 	domIsNull
 };
 
 extend(typeMsg,errorMessage);
 extend(typeArgumentMsg,errorMessage);
-
 export default errorMessage;

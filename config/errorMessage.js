@@ -1,6 +1,6 @@
 import {
 	extend
-} from "../../extend/extend.js"
+} from "../extend/extend.js"
 
 /**
  * 拼接消息

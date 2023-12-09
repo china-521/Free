@@ -1,4 +1,4 @@
-import errorMessage from "../config/configs/errorMessage.js"
+import config from "../config/index.js"
 import {
 	equals
 } from "../utils/core/equals.js"
@@ -34,8 +34,8 @@ export function exception(val, errorType, msg, params) {
 	if (msg) {
 		errorMsg = msg;
 	} else {
-		if (errorType in errorMessage) {
-			errorMsg = errorMessage[errorType];
+		if (errorType in config.errorMessage) {
+			errorMsg = config.errorMessage[errorType];
 		}
 		if (params) {
 			const param = handleParams(val, params);

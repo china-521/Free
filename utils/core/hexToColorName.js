@@ -1,4 +1,4 @@
-import config from "../../config/config.js";
+import config from "../../config/index.js"
 /**
  *  16进制颜色转颜色名称 
  * @param {String} color 16进制颜色

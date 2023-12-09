@@ -8,9 +8,9 @@
 </head>
 <body>
 	<script>
-		$.freeWarn({a:2,b:2},'','自定义警告');
-		$.freeWarn({a:2,b:2},'extendConflict');
-		$.freeWarn({a:2,b:2},'extendConflict','扩展冲突警告');
+		$.freeWarn('extendConflict',null,{a:2,b:2});
+		$.freeWarn('extendConflict','扩展冲突警告',{a:2,b:2});
+		$.freeWarn('extendConflict',null,{a:2,b:2},[1,2]);
 	</script>
 </body>
 </html>

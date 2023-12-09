@@ -4,5 +4,6 @@ import console from "../utils/log/console.js"
  * @param  {...any} msg 自定义异常信息
  */
 export function warn(...msg) {
-	console.warn(...msg);
+	const pre = '[Free warn]:';
+	console.warn(pre,...msg);
 }

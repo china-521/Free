@@ -4,6 +4,7 @@ import {
 import {
 	exception
 } from "../../exception/exception.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是合法的事件
  * @param {String} val 事件名称
@@ -14,18 +15,19 @@ import {
  */
 export function isEvent(val, show, msg, params) {
 	const reg = /^on/;
+	let eventName;
 	if (!reg.test(val)) {
-		val = 'on' + val;
+		eventName = 'on' + val;
 	}
-	let flag = contains(document.documentElement, val);
+	let flag = contains(document.documentElement, eventName);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'event', msg);
+			exception(val, config.errorMessageKey.event, msg);
 		}
 		if (params) {
-			exception(val, 'eventArgument', null, params);
+			exception(val, config.errorMessageKey.eventArgument, null, params);
 		}
-		exception(val, 'event');
+		exception(val, config.errorMessageKey.event);
 	}
 	return flag;
 }

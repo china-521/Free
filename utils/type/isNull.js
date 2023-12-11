@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isNull(val, show, msg, params) {
 	let flag = getType(val) === 'Null';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Null', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'NullArgument', null, params);
+			exception(val, config.errorMessageKey.NullArgument, null, params);
 		}
-		exception(val, 'Null');
+		exception(val, config.errorMessageKey.Null);
 	}
 	return flag;
 }

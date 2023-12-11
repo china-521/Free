@@ -1,6 +1,7 @@
 import {
 	exception
 } from "../../exception/exception.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是Dom类型
  * @param {any} val 任意值
@@ -19,12 +20,12 @@ export function isDom(val, show, msg, params) {
 		})();
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Dom', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'DomArgument', null, params);
+			exception(val, config.errorMessageKey.DomArgument, null, params);
 		}
-		exception(val, 'Dom');
+		exception(val, config.errorMessageKey.Dom);
 	}
 	return flag;
 }

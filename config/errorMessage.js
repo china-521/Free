@@ -39,7 +39,7 @@ const typeObject = {
 	notEmptyObject: 'a not empty Object',
 	Function: 'a Function',
 	Integer: 'an Integer',
-	Json: '"a Json',
+	Json: 'a Json',
 	Map: 'a Map',
 	NaN: 'a NaN',
 	NodeList: 'a NodeList',
@@ -50,15 +50,15 @@ const typeObject = {
 	String: 'a String',
 	Undefined: 'an Undefined',
 	Set: 'a Set',
-	Window: 'a Window',
-	Free: 'a Free',
+	Window: 'a window',
+	Free: 'a "Free" Object',
 	styleName: 'a correct style name',
 	style: 'a correct style',
 	event: 'a correct event name',
 	htmlTag: 'a correct HTML Tag',
 	plainObject: 'a plain Object',
 	htmlDocument: 'a document',
-	extendParam: 'an object or function'
+	extendParam: 'an Object or Function'
 };
 
 const typeMsg = concat(pre, medium, null, typeObject);

@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isSet(val, show, msg, params) {
 	let flag = getType(val) === 'Set';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Set', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'SetArgument', null, params);
+			exception(val, config.errorMessageKey.SetArgument, null, params);
 		}
-		exception(val, 'Set');
+		exception(val, config.errorMessageKey.Set);
 	}
 	return flag;
 }

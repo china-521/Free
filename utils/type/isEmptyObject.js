@@ -7,6 +7,7 @@ import {
 import {
 	isObject
 } from "./isObject.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是空对象类型
  * @param {any} val 任意值
@@ -19,12 +20,12 @@ export function isEmptyObject(val, show, msg, params) {
 	let flag = (isObject(val) && isEmpty(val));
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'emptyObject', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'emptyObjectArgument', null, params);
+			exception(val, config.errorMessageKey.emptyObjectArgument, null, params);
 		}
-		exception(val, 'emptyObject');
+		exception(val, config.errorMessageKey.emptyObject);
 	}
 	return flag;
 }

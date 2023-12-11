@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是日期类型
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isDate(val, show, msg, params) {
 	let flag = getType(val) === 'Date';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Date', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'DateArgument', null, params);
+			exception(val, config.errorMessageKey.DateArgument, null, params);
 		}
-		exception(val, 'Date');
+		exception(val, config.errorMessageKey.Date);
 	}
 	return flag;
 }

@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 NaN 类型
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isNaN(val, show, msg, params) {
 	let flag = (getType(val) === 'Number' && (val + "") === 'NaN');
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'NaN', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'NaNArgument', null, params);
+			exception(val, config.errorMessageKey.NaNArgument, null, params);
 		}
-		exception(val, 'NaN');
+		exception(val, config.errorMessageKey.NaN);
 	}
 	return flag;
 }

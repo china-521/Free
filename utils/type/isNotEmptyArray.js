@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -19,12 +20,12 @@ export function isNotEmptyArray(val, show, msg, params) {
 	let flag = (isArray(val) && !isEmpty(val));
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'notEmptyArray', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'notEmptyArrayArgument', null, params);
+			exception(val, config.errorMessageKey.notEmptyArrayArgument, null, params);
 		}
-		exception(val, 'notEmptyArray');
+		exception(val, config.errorMessageKey.notEmptyArray);
 	}
 	return flag;
 }

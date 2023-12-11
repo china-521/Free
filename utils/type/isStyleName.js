@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -14,12 +15,12 @@ export function isStyleName(val, show, msg, params) {
 	let flag = (val in styles);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'styleName', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'styleNameArgument', null, params);
+			exception(val, config.errorMessageKey.styleNameArgument, null, params);
 		}
-		exception(val, 'styleName');
+		exception(val, config.errorMessageKey.styleName);
 	}
 	return flag;
 }

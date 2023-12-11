@@ -4,6 +4,7 @@ import {
 import {
 	isNumber
 } from "../type/isNumber.js"
+import config from "../../config/index.js";
 /**
  * 检查是否是整数类型
  * @param {any} val 任意值
@@ -16,24 +17,24 @@ export function isInteger(val, show, msg, params) {
 	if (!isNumber(val, false)) {
 		if (show) {
 			if (msg) {
-				exception(val, 'Integer', msg);
+				exception(val, null, msg);
 			}
 			if (params) {
-				exception(val, 'IntegerArgument', null, params);
+				exception(val, config.errorMessageKey.IntegerArgument, null, params);
 			}
-			exception(val, 'Integer');
+			exception(val, config.errorMessageKey.Integer);
 		}
 		return false;
 	}
 	let flag = (String(val).indexOf('.') === -1);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Integer', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'IntegerArgument', null, params);
+			exception(val, config.errorMessageKey.IntegerArgument, null, params);
 		}
-		exception(val, 'Integer');
+		exception(val, config.errorMessageKey.Integer);
 	}
 	return flag;
 }

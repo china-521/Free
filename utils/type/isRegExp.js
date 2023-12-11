@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isRegExp(val, show, msg, params) {
 	let flag = getType(val) === 'RegExp';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'RegExp', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'RegExpArgument', null, params);
+			exception(val, config.errorMessageKey.RegExpArgument, null, params);
 		}
-		exception(val, 'RegExp');
+		exception(val, config.errorMessageKey.RegExp);
 	}
 	return flag;
 }

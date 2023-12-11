@@ -4,6 +4,7 @@ import {
 import {
 	isNull
 } from "./isNull.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 JSON 类型
  * @param {any} val 任意值
@@ -20,12 +21,12 @@ export function isJson(val, show, msg, params) {
 	} catch (e) {
 		if (show) {
 			if (msg) {
-				exception(val, 'Json', msg);
+				exception(val, null, msg);
 			}
 			if (params) {
-				exception(val, 'JsonArgument', null, params);
+				exception(val, config.errorMessageKey.JsonArgument, null, params);
 			}
-			exception(val, 'Json');
+			exception(val, config.errorMessageKey.Json);
 		}
 	}
 	return flag;

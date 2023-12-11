@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isObject(val, show, msg, params) {
 	let flag = (getType(val) === 'Object' || typeof val === 'object') && getType(val) !== 'Null';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Object', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'ObjectArgument', null, params);
+			exception(val, config.errorMessageKey.ObjectArgument, null, params);
 		}
-		exception(val, 'Object');
+		exception(val, config.errorMessageKey.Object);
 	}
 	return flag;
 }

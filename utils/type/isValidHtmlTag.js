@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -15,12 +16,12 @@ export function isValidHtmlTag(val, show, msg, params) {
 	let flag = reg.test(val);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'htmlTag', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'htmlTagArgument', null, params);
+			exception(val, config.errorMessageKey.htmlTagArgument, null, params);
 		}
-		exception(val, 'htmlTag');
+		exception(val, config.errorMessageKey.htmlTag);
 	}
 	return flag;
 }

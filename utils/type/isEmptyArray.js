@@ -7,6 +7,7 @@ import {
 import {
 	isArray
 } from "./isArray.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是空数组类型
  * @param {any} val 任意值
@@ -19,12 +20,12 @@ export function isEmptyArray(val, show, msg, params) {
 	let flag = (isArray(val) && isEmpty(val));
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'emptyArray', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'emptyArrayArgument', null, params);
+			exception(val, config.errorMessageKey.emptyArrayArgument, null, params);
 		}
-		exception(val, 'emptyArray');
+		exception(val, config.errorMessageKey.emptyArray);
 	}
 	return flag;
 }

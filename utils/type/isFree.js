@@ -2,6 +2,7 @@ import Free from "../../main/main.js";
 import {
 	exception
 } from "../../exception/exception.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 Free 类型
  * @param {any} val 任意值
@@ -14,12 +15,12 @@ export function isFree(val, show, msg, params) {
 	let flag = (val === Free || val instanceof Free);
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Free', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'FreeArgument', null, params);
+			exception(val, config.errorMessageKey.FreeArgument, null, params);
 		}
-		exception(val, 'Free');
+		exception(val, config.errorMessageKey.Free);
 	}
 	return flag;
 }

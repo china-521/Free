@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 document
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isDocument(val, show, msg, params) {
 	let flag = getType(val) === 'HTMLDocument';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Boolean', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'htmlDocumentArgument', null, params);
+			exception(val, config.errorMessageKey.htmlDocumentArgument, null, params);
 		}
-		exception(val, 'htmlDocument');
+		exception(val, config.errorMessageKey.htmlDocument);
 	}
 	return flag;
 }

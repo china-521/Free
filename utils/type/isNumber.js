@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isNumber(val, show, msg, params) {
 	let flag = getType(val) === 'Number';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Number', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'NumberArgument', null, params);
+			exception(val, config.errorMessageKey.NumberArgument, null, params);
 		}
-		exception(val, 'Number');
+		exception(val, config.errorMessageKey.Number);
 	}
 	return flag;
 }

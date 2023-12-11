@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -19,12 +20,12 @@ export function isNotEmptyObject(val, show, msg, params) {
 	let flag = (isObject(val) && !isEmpty(val));
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'notEmptyObject', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'notEmptyObjectArgument', null, params);
+			exception(val, config.errorMessageKey.notEmptyObjectArgument, null, params);
 		}
-		exception(val, 'notEmptyObject');
+		exception(val, config.errorMessageKey.notEmptyObject);
 	}
 	return flag;
 }

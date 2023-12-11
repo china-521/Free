@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 NodeList 类型
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isNodeList(val, show, msg, params) {
 	let flag = getType(val) === 'NodeList';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'NodeList', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'NodeListArgument', null, params);
+			exception(val, config.errorMessageKey.NodeListArgument, null, params);
 		}
-		exception(val, 'NodeList');
+		exception(val, config.errorMessageKey.NodeList);
 	}
 	return flag;
 }

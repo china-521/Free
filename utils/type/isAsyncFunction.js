@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是 异步函数
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isAsyncFunction(val, show, msg, params) {
 	let flag = getType(val) === 'AsyncFunction';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'AsyncFunction', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'AsyncFunctionArgument', null, params);
+			exception(val, config.errorMessageKey.AsyncFunctionArgument, null, params);
 		}
-		exception(val, 'AsyncFunction');
+		exception(val, config.errorMessageKey.AsyncFunction);
 	}
 	return flag;
 }

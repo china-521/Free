@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是布尔类型
  * @param {any} val 任意值
@@ -16,12 +17,12 @@ export function isBoolean(val, show, msg, params) {
 	let flag = getType(val) === 'Boolean';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Boolean', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'BooleanArgument', null, params);
+			exception(val, config.errorMessageKey.BooleanArgument, null, params);
 		}
-		exception(val, 'Boolean');
+		exception(val, config.errorMessageKey.Boolean);
 	}
 	return flag;
 }

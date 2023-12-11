@@ -4,6 +4,7 @@ import {
 import {
 	getType
 } from "./getType.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是函数类型
  * @param {any} val 任意值
@@ -13,15 +14,15 @@ import {
  * @return  {Boolean}
  */
 export function isFunction(val, show, msg, params) {
-	let flag = getType(val) === 'Function';
+	let flag = getType(val) === 'Function' || getType(val) === 'AsyncFunction';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Function', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'FunctionArgument', null, params);
+			exception(val, config.errorMessageKey.FunctionArgument, null, params);
 		}
-		exception(val, 'Function');
+		exception(val, config.errorMessageKey.Function);
 	}
 	return flag;
 }

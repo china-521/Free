@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isUndefined(val, show, msg, params) {
 	let flag = getType(val) === 'Undefined';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Undefined', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'UndefinedArgument', null, params);
+			exception(val, config.errorMessageKey.UndefinedArgument, null, params);
 		}
-		exception(val, 'Undefined');
+		exception(val, config.errorMessageKey.Undefined);
 	}
 	return flag;
 }

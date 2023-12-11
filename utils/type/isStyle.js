@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -46,12 +47,12 @@ export function isStyle(name, val, show, msg, params) {
 		let obj = {};
 		obj[name] = val;
 		if (msg) {
-			exception(obj, 'style', msg);
+			exception(obj, null, msg);
 		}
 		if (params) {
-			exception(obj, 'styleArgument', null, params);
+			exception(obj, config.errorMessageKey.styleArgument, null, params);
 		}
-		exception(obj, 'style');
+		exception(obj, config.errorMessageKey.style);
 	}
 	return flag;
 }

@@ -7,6 +7,7 @@ import {
 import {
 	isEmpty
 } from "../core/isEmpty.js";
+import config from "../../config/index.js";
 /**
  * 检查是否是空字符串类型
  * @param {any} val 任意值
@@ -19,12 +20,12 @@ export function isEmptyString(val, show, msg, params) {
 	let flag = (isString(val) && isEmpty(val));
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'emptyString', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'emptyStringArgument', null, params);
+			exception(val, config.errorMessageKey.emptyStringArgument, null, params);
 		}
-		exception(val, 'emptyString');
+		exception(val, config.errorMessageKey.emptyString);
 	}
 	return flag;
 }

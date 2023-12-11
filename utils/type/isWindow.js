@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -16,12 +17,12 @@ export function isWindow(val, show, msg, params) {
 	let flag = getType(val) === 'Window';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'Window', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'WindowArgument', null, params);
+			exception(val, config.errorMessageKey.WindowArgument, null, params);
 		}
-		exception(val, 'Window');
+		exception(val, config.errorMessageKey.Window);
 	}
 	return flag;
 }

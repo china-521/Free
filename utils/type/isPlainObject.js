@@ -1,3 +1,4 @@
+import config from "../../config/index.js";
 import {
 	exception
 } from "../../exception/exception.js";
@@ -13,12 +14,12 @@ export function isPlainObject(val, show, msg, params) {
 	let flag = Object.prototype.toString.call(val) === '[object Object]';
 	if (!flag && show) {
 		if (msg) {
-			exception(val, 'plainObject', msg);
+			exception(val, null, msg);
 		}
 		if (params) {
-			exception(val, 'plainObjectArgument', null, params);
+			exception(val, config.errorMessageKey.plainObjectArgument, null, params);
 		}
-		exception(val, 'plainObject');
+		exception(val, config.errorMessageKey.plainObject);
 	}
 	return flag;
 }

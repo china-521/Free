@@ -10,6 +10,9 @@ import {
 	leavePage
 } from "../../utils/dom/event/leavePage.js"
 import {
+	beforeUnload
+} from "../../utils/dom/event/beforeUnload.js"
+import {
 	eventDelegation
 } from "../../utils/dom/event/eventDelegation.js"
 import {
@@ -18,6 +21,10 @@ import {
 import {
 	click
 } from "../../utils/dom/event/click.js"
+import {
+	$html,
+	html
+} from "../../utils/dom/attribute/html.js"
 import {
 	text,
 	_text
@@ -76,6 +83,7 @@ import {
 
 export default {
 	toFunction: {
+		$html,
 		_text,
 		_toCssText,
 		_draggable,
@@ -84,6 +92,7 @@ export default {
 		animation,
 		enterPage,
 		leavePage,
+		beforeUnload,
 		setStyle,
 		getStyle,
 		getCssText,
@@ -106,6 +115,7 @@ export default {
 	},
 	toPrototype: {
 		_class: classUtils._class,
+		html,
 		text,
 		css,
 		draggable,

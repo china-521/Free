@@ -4,6 +4,12 @@ import event from "../../utils/dom/event/event.js"
 import eventBus from "../../utils/dom/event/eventBus.js"
 import pubSub from "../../utils/dom/event/pubSub.js"
 import {
+	enterPage
+} from "../../utils/dom/event/enterPage.js"
+import {
+	leavePage
+} from "../../utils/dom/event/leavePage.js"
+import {
 	eventDelegation
 } from "../../utils/dom/event/eventDelegation.js"
 import {
@@ -76,6 +82,8 @@ export default {
 		_remove,
 		_drag,
 		animation,
+		enterPage,
+		leavePage,
 		setStyle,
 		getStyle,
 		getCssText,

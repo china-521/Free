@@ -47,7 +47,9 @@ export function format(date, format) {
 		minute = fixedDate(minute);
 		second = fixedDate(second);
 		format = format.trim();
-		if (format === 'YYYY-MM-DD hh:mm:ss') {
+		if(format === 'yyyy-MM-dd HH:mm:ss'){
+			return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+		}else if (format === 'YYYY-MM-DD hh:mm:ss') {
 			return year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
 		} else if (format === 'YYYY/MM/DD hh:mm:ss') {
 			return year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second;
